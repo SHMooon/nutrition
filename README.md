@@ -1,7 +1,7 @@
 # nutrition
 let's go
 
-hey patrik
+hey patrick
 
 hey ho, lets go!
 
