@@ -22,7 +22,7 @@ knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 ```
 
 # Model with R
-include R code... 
+
 
 
 
