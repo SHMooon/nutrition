@@ -1,0 +1,27 @@
+---
+title: "Log file of the nutrition project"
+author: "Patrick Frey" 
+date: "`r Sys.Date()`"
+output: html_document
+---
+<!--please enter your names as authors--> 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Description from https://www.reddit.com/r/RStudio/comments/g49gu0/r_markdown_knitropts_chunksetecho_true/
+# Having knitr::opts_chunk$set(echo = TRUE) in a chunk at the beginning of your document is the same of having ````{r echo = TRUE}` for all chunks.
+# You can also use it for setting other configs, like echo, eval, include and others 
+```
+
+## Inclution of our first steps (this header can be changed)
+
+```{r echo=F, fig.cap="first brainstorming about the model", out.width = '100%'}
+library(knitr)
+knitr::include_graphics("sup_data/230428_brainstorm1.jpg") # doesn't work yet
+```
+
+
+
+
+
+
