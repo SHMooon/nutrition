@@ -30,9 +30,12 @@ knitr::include_graphics('Sanghyo mermaid.png')
 
 
 ```
+
+
 #### Model from Patrick 
 ```{r}
-
+source('model_patrick.R')
+model_patrick
 ```
 
 
