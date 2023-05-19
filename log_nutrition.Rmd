@@ -31,7 +31,7 @@ knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 #knitr::read_chunk('Sanghyo.R')
 
 source('Sanghyo.R')
-
+Sanghyo
 
 ```
 
