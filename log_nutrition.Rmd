@@ -38,14 +38,9 @@ source('Sanghyo.R')
 
 #### Model from Patrick 
 ```{r}
-<<<<<<< HEAD
+
 source('model_patrick.R')
 model_patrick
-=======
-
-
-
->>>>>>> 932b286fe0c91b0b0ca2fccdcdb9ff19f8c3d730
 ```
 
 
