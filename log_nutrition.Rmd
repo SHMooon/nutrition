@@ -44,6 +44,3 @@ model_patrick
 ```
 
 
-hier steht was neues
-
-hier steht was anderes
