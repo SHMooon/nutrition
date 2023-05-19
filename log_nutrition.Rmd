@@ -26,7 +26,7 @@ knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 #### Model from Sanghyo
 ```{r}
 
-knitr::include_graphics('Sanghyo mermaid.png')
+knitr::read_chunk('Sanghyo.R')
 
 
 ```
