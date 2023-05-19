@@ -10,3 +10,4 @@ Sanghyo <- mermaid("graph LR
         A -->F; linkStyle 3 stroke: green, stroke-width:1.5px
         I(Individuals)-->E(Education); linkStyle 4 stroke: green, stroke-width:1.5px
         E-->F; linkStyle 5 stroke: green, stroke-width:1.5px")
+Sanghyo
