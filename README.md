@@ -26,4 +26,6 @@ hiiiiii
 
 =======
 
-introduce or explain about reduced consumption: for health etc.. 
+#introduce or explain about reduced consumption: for health etc.. 
+#until 16.06. decision & structure the decusion model
+
