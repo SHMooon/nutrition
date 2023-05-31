@@ -17,14 +17,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Inclution of our first steps (this header can be changed)
 
-```{r}
+```{r, include=FALSE}
 knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 ```
 
 
 # Model with R
 #### Model from Sanghyo
-```{r}
+```{r, include=FALSE}
 #knitr::include_graphics('Sanghyo Mermaid.png')
 
 
@@ -37,9 +37,26 @@ Sanghyo
 
 
 #### Model from Patrick 
-```{r}
+```{r, include=FALSE}
 
 source('model_patrick.R')
 model_patrick
 ```
 
+
+# Building a decision
+* **Research** 
+    + Where exists sugar taxes already? 
+    + for which products exist sugar taxes?
+    + add more...
+
+* **Positiv apsects** of a sugar tax:
+    + less sugar consumption --> benefit on health 
+    + add more... 
+
+* **Negativ aspects** of a sugar tax:
+    + higher cost for the consumer
+    + add more... 
+    
+* **Further aspects** 
+    + impacts on social relationships? e.g. kids birthday
