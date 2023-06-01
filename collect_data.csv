@@ -1,0 +1,4 @@
+id,category,question,lower bound,upper bound,se?,data category
+001,gov,how much percent is the sugar tax in UK?,3.00,30.00,,research
+002,sup,how many different sugar products (over 10 %) are at the supermarket checkout listed?,1.00,70.00,,observation
+003,ind,how many grams sugar per day do you eat?,20.00,230.00,,survey
