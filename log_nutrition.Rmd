@@ -23,7 +23,7 @@ knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 
 
 # Model with R
-#### Model from Sanghyo
+#### Model from Sanghyo (excluded)
 ```{r, include=FALSE}
 #knitr::include_graphics('Sanghyo Mermaid.png')
 
@@ -36,14 +36,14 @@ Sanghyo
 ```
 
 
-#### Model from Patrick 
+#### Model from Patrick (exluded)
 ```{r, include=FALSE}
 
 source('model_patrick.R')
 model_patrick
 ```
 
-
+<!--
 # Building a decision
 * **Research** 
     + Where exists sugar taxes already? 
@@ -51,7 +51,7 @@ model_patrick
     + add more...
 
 * **Positiv apsects** of a sugar tax:
-    + less sugar consumption --> benefit on health 
+    + less sugar consumption -> benefit on health 
     + add more... 
 
 * **Negativ aspects** of a sugar tax:
@@ -60,3 +60,13 @@ model_patrick
     
 * **Further aspects** 
     + impacts on social relationships? e.g. kids birthday
+    
+-->
+
+## Brainstorming 7th of June 2023 
+```{r, include=T, echo=F}
+knitr::include_graphics('sup_data/230607_brainstorming.jpg')
+```
+
+
+
