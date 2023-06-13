@@ -36,6 +36,8 @@ model_patrick <- mermaid("graph LR
 
 model_patrick
 
+
+# old model ####
 grViz("digraph {
   
 graph[layout = dot, rankdir = LR]
