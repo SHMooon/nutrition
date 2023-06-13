@@ -6,7 +6,7 @@ library(decisionSupport)
 # install.packages("DiagrammeR")
 library(DiagrammeR)
 
-mermaid("graph LR
+model_patrick <- mermaid("graph LR
         rc(Results of the Countries) --> sup(Support)
         
         gov(Goverment) --> sh(Stakeholders)
