@@ -36,13 +36,32 @@ a <- wb_search(pattern="SSB")
 a
 
 library(readr)
-sugar_world_consumption <- read.csv("Sugar_World-MarketTrade.csv", sep=",")
+sugar_world_consumption <- read.csv("SC.csv")
+
 colnames(sugar_world_consumption)<-gsub("X","",colnames(sugar_world_consumption))
 
 head(sugar_world_consumption)
 
-SWC2021<- select(sugar_world_consumption, Country,2021)
+SWC2021<- filter(sugar_world_consumption, date == 2021)
 
+mergeData <- merge(World, sugar_world_consumption, by.x="sovereignt", by.y="Country",
+                   all.x=TRUE)
+
+tm_shape(mergeData)+
+  tm_polygons("2021", palette = "BrBG") +
+  tm_layout(main.title = "World sugar consumption 2021",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+ 
+ ####### make data numeric!!!!!####
+
+
+#tm_bubble(color... color vector ) -> ?tm_bubbles
+  #tm_bubbles(size="area", col="2021",
+             #palette = pubu : different color skin, different vector color
+             #palette="PuBu")
 
 #find out how i can use select.... 
 #find sugar consumption world wide... or something like that.. ,,,
+#use soft drink tax. 
