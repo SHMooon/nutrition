@@ -37,7 +37,7 @@ Sanghyo
 
 
 #### Model from Patrick (exluded)
-```{r, include=FALSE}
+```{r, include=T}
 
 source('model_patrick.R')
 model_patrick
