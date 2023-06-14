@@ -24,9 +24,28 @@ library(sp)
 
 #install.packages("tmap")
 library(tmap)
+
+# for loading our data
+library(raster)
+library(readr)
+library(readxl)
+library(sf)
+# for datasets
+##install.packages("purrr")
+library(maps)
+##install.packages("spData")
+library(spData)
+# for creating animations
+##install.packages("magick")
+library(magick)
+# for plotting
+library(grid)
+library(tmap)
+library(viridis)
+library(ggplot2)
+
 data("World")
-tm_shape(World)+
-  tm_polygons()
+
 
 #install.packages ("wbstats")
 library(wbstats)
@@ -54,8 +73,27 @@ tm_shape(mergeData)+
             main.title.color = "lightblue")+
   tm_text(text = "iso_a3", size = 0.2)
  
- ####### make data numeric!!!!!####
+ ####### make data numeric by 2021!!!!!####
 
+library(readxl)
+SSB_Tax_Database_Feb23 <- read_excel("Sanghyo/SSB-Tax-Database-Feb23.xlsx")
+SSB <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(SSB$continent=="Europe")+
+  tm_polygons("bev") +
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
+data("Europe")
+
+tm_shape(World[World$continent=="Europe",]) 
+
+
+
+tm_shape(World) + tm_polygons("lightyellow") + 
+  tm_facets(by = "continent", free.coords = TRUE, free.scales = F)  
 
 #tm_bubble(color... color vector ) -> ?tm_bubbles
   #tm_bubbles(size="area", col="2021",
