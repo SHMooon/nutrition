@@ -73,32 +73,107 @@ tm_shape(mergeData)+
             main.title.color = "lightblue")+
   tm_text(text = "iso_a3", size = 0.2)
  
+
  ####### make data numeric by 2021!!!!!####
 
 library(readxl)
 SSB_Tax_Database_Feb23 <- read_excel("Sanghyo/SSB-Tax-Database-Feb23.xlsx")
-SSB <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
 
-tm_shape(SSB$continent=="Europe")+
-  tm_polygons("bev") +
+
+
+
+#Continent 
+#Europe
+Europe <- World[World$continent=="Europe",]
+SSB_Europe <- merge(Europe, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(Europe)+
+  tm_polygons()+
+tm_shape(SSB_Europe)+
+  tm_polygons("carbonates")+
   tm_layout(main.title = "Basis_tiers",
             main.title.position = "center",
             main.title.color = "lightblue")+
   tm_text(text = "iso_a3", size = 0.2)
 
-data("Europe")
-
-tm_shape(World[World$continent=="Europe",]) 
+#cut the map of europe
 
 
+#Africa
+Africa <- World[World$continent=="Africa",]
+SSB_Africa <- merge(Africa, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
 
-tm_shape(World) + tm_polygons("lightyellow") + 
-  tm_facets(by = "continent", free.coords = TRUE, free.scales = F)  
+tm_shape(Africa)+
+  tm_polygons()+
+tm_shape(SSB_Africa)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
 
-#tm_bubble(color... color vector ) -> ?tm_bubbles
-  #tm_bubbles(size="area", col="2021",
-             #palette = pubu : different color skin, different vector color
-             #palette="PuBu")
+#Asia
+
+Asia <- World[World$continent=="Asia",]
+SSB_Asia <- merge(Asia, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(Asia)+
+  tm_polygons()+
+  tm_shape(SSB_Asia)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
+
+#North America
+
+NorthAmerica <- World[World$continent=="North America",]
+SSB_NorthAmerica <- merge(NorthAmerica, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(NorthAmerica)+
+  tm_polygons()+
+  tm_shape(SSB_NorthAmerica)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
+
+#####add USA cities!! 
+
+
+#South America
+
+SouthAmerica <- World[World$continent=="South America",]
+SSB_SouthAmerica <- merge(SouthAmerica, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(SouthAmerica)+
+  tm_polygons()+
+  tm_shape(SSB_SouthAmerica)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
+
+#oceania
+
+Oceania <- World[World$continent=="Oceania",]
+SSB_Oceania <- merge(Oceania, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
+tm_shape(Oceania)+
+  tm_polygons()+
+  tm_shape(SSB_Oceania)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Basis_tiers",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
 
 #find out how i can use select.... 
 #find sugar consumption world wide... or something like that.. ,,,
