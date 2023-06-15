@@ -30,14 +30,14 @@ knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
 
 #knitr::read_chunk('Sanghyo.R')
 
-source('Sanghyo.R')
-Sanghyo
+#source('Sanghyo.R')
+#Sanghyo
 
 ```
 
 
 #### Model from Patrick 
-```{r, include=FALSE}
+```{r, include=T}
 
 source('model_patrick.R')
 model_patrick

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Patrick Frey" />
 
-<meta name="date" content="2023-06-07" />
+<meta name="date" content="2023-06-14" />
 
 <title>Log file of the nutrition project</title>
 
@@ -2894,7 +2894,7 @@ display: none;
 
 <h1 class="title toc-ignore">Log file of the nutrition project</h1>
 <h4 class="author">Patrick Frey</h4>
-<h4 class="date">2023-06-07</h4>
+<h4 class="date">2023-06-14</h4>
 
 </div>
 
@@ -2910,6 +2910,14 @@ display: none;
 </div>
 <div id="model-from-patrick" class="section level4">
 <h4>Model from Patrick</h4>
+<pre class="r"><code>source(&#39;model_patrick.R&#39;)</code></pre>
+<pre><code>## The legacy packages maptools, rgdal, and rgeos, underpinning this package
+## will retire shortly. Please refer to R-spatial evolution reports on
+## https://r-spatial.org/r/2023/05/15/evolution4.html for details.
+## This package is now running under evolution status 0</code></pre>
+<pre class="r"><code>model_patrick</code></pre>
+<div class="DiagrammeR html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-08bcd13f03502150d532" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-08bcd13f03502150d532">{"x":{"diagram":"graph LR\n        rc(Results of the Countries) --> sup(Support)\n        \n        gov(Goverment) --> sh(Stakeholders)\n        ind(Individuals) --> sh\n        sm(Supermarket) --> sh\n        man(Manufactories) --> sh\n        law(Curent state of law) --> gov\n        rn(Recommended nutrition by WHO) --> ind\n        int(Interests) --> sm\n        int --> man\n        sh --> sup\n        \n        in(Input) --> law\n        in(Input) --> rn\n        in(Input) --> int\n        \n        sup --> D(Decision)\n        D --> O(Outcome)\n        O --> G(Good)\n        O --> B(Bad)\n        \n        G --> in\n        B --> in\n        "},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="building-a-decision" class="section level1">
