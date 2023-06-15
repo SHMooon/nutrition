@@ -86,14 +86,14 @@ SSB_World <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
 tm_shape(World)+
   tm_polygons()+
   tm_shape(SSB_World)+
-  tm_polygons("carbonates")+
+  tm_polygons("SSB-Tax")+
   tm_layout(main.title = "Countries with SSB -Tax",
             main.title.position = "center",
             main.title.color = "lightblue")+
   tm_text(text = "iso_a3", size = 0.2)
 
 
-
+###pls work with new excel file####
 #Continent 
 #Europe
 Europe <- World[World$continent=="Europe",]
@@ -190,3 +190,4 @@ tm_shape(Oceania)+
 #find out how i can use select.... 
 #find sugar consumption world wide... or something like that.. ,,,
 #use soft drink tax. 
+

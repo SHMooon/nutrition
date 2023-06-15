@@ -1,7 +1,7 @@
 ---
-title: "16.06. Presentation"
-author: "Team. Nutrition"
-date: "2023-06-15"
+title: "Reduce Sugar Consumption"
+author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
+date: "2023-06-16"
 output: ioslides_presentation
 ---
 
@@ -9,17 +9,8 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
 ## Countries with Sugar Sweetend Beverage Tax
 
@@ -27,15 +18,19 @@ When you click the **Knit** button a document will be generated that includes bo
 library(tmap)
 data(World)
 library(readxl)
+library(raster)
+library(sp)
+
 SSB_Tax_Database_Feb23 <- read_excel("Sanghyo/SSB-Tax-Database-Feb23.xlsx")
 SSB_World <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+
 A <- tm_shape(World)+
   tm_polygons()+
   tm_shape(SSB_World)+
-  tm_polygons("carbonates")+
+  tm_polygons("SSB-Tax")+
   tm_layout(main.title = "Countries with SSB -Tax",
             main.title.position = "center",
-            main.title.color = "lightblue")+
+            main.title.color = "#003333")+
   tm_text(text = "iso_a3", size = 0.2)
 
 ```
@@ -77,6 +72,33 @@ pos, neg -> I
 }")
 ```
 
-## Hey
+## Decision Modell
 
+```{r echo=F}
+
+library(DiagrammeR)
+
+DiagrammeR::grViz("digraph {
+  
+graph[layout = dot, rankdir = RR]
+node[style=filled]
+
+3 [label = 'SUGAR TAX', shape = triangle]
+4 [label = 'Outcome']
+5 [label = 'Good', shape = hexagon, fillcolor= 'green']
+6 [label = 'Bad', shape = hexagon, fillcolor = 'firebrick']
+7 [label = 'Decision', shape = cylinder, fontsize= 24, style='bold']
+8 [label = 'NO SUGAR TAX', shape = invtriangle]
+9 [label = 'Outcome']
+10 [label = 'Good', shape = hexagon, fillcolor = 'green']
+11 [label = 'Bad', shape = hexagon, fillcolor = 'firebrick']
+
+          7-> 3->4 -> 5, 6
+          7-> 8-> 9 -> 10, 11
+          5->3 [color= 'green']
+          6->8 [style= 'dashed', color='firebrick']
+          10->8 [color = 'green']
+          11->3 [style= 'dashed', color='firebrick']
+}")
+```
 
