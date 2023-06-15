@@ -1,5 +1,5 @@
 
-install.packages("DiagrammeR")
+#install.packages("DiagrammeR")
 library(DiagrammeR)
 
 DiagrammeR::grViz("digraph {
@@ -13,7 +13,7 @@ graph[layout = dot, rankdir = RR]
 5 [label = 'Good', shape = hexagon]
 6 [label = 'Bad', shape = hexagon]
 7 [label = 'Sugar Beverages']
-8 [label = 'NO SUGAR TAX', shape = triangle]
+8 [label = 'NO SUGAR TAX', shape = invtriangle]
 9 [label = 'Outcome']
 10 [label = 'Good', shape = hexagon, colorfill = green]
 11 [label = 'Bad', shape = hexagon]

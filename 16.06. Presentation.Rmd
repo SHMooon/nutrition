@@ -1,0 +1,82 @@
+---
+title: "16.06. Presentation"
+author: "Team. Nutrition"
+date: "2023-06-15"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Countries with Sugar Sweetend Beverage Tax
+
+```{r ,include=F, echo=F}
+library(tmap)
+data(World)
+library(readxl)
+SSB_Tax_Database_Feb23 <- read_excel("Sanghyo/SSB-Tax-Database-Feb23.xlsx")
+SSB_World <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
+A <- tm_shape(World)+
+  tm_polygons()+
+  tm_shape(SSB_World)+
+  tm_polygons("carbonates")+
+  tm_layout(main.title = "Countries with SSB -Tax",
+            main.title.position = "center",
+            main.title.color = "lightblue")+
+  tm_text(text = "iso_a3", size = 0.2)
+
+```
+
+```{r }
+A
+```
+
+
+## Input modell
+```{r echo=F}
+library(decisionSupport)
+library(DiagrammeR)
+grViz("digraph {
+  
+graph[layout = dot, rankdir = LR]
+node[style = filled, margin = 0.1, fillcolor = 'azure']
+
+
+I   [label = 'Input for Decision']
+pos [label = 'Positiv Support', fillcolor = 'green']
+neg [label = 'Negativ Support', fillcolor = 'red']
+
+sh  [label = 'Stakeholder', shape = rectangle]
+res [label = 'Results of Countries', shape = rectangle]
+
+gov [label = 'Goverment', shape = rectangle]
+ind [label = 'Individuals', shape = rectangle]
+sm [label = 'Supermarkets', shape = rectangle]
+man [label = 'Manufactories', shape = rectangle]
+
+rs  [label = 'Research', shape = rectangle]
+
+gov, ind, sm, man -> sh -> pos, neg
+rs -> res
+res -> pos, neg 
+pos, neg -> I
+
+}")
+```
+
+## Hey
+
+
