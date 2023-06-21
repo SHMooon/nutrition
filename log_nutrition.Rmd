@@ -1,62 +1,15 @@
 ---
-title: "Log file of the nutrition project"
-author: "Patrick Frey"
+title: "Implementing a tax for sugar sweeted beverages"
+author: "Nutrition Group"
 date: "`r Sys.Date()`"
 output:
   html_document: default
   pdf_document: default
 ---
-<!--please enter your names as authors--> 
+## Model
+```{r, echo=F}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-# Description from https://www.reddit.com/r/RStudio/comments/g49gu0/r_markdown_knitropts_chunksetecho_true/
-# Having knitr::opts_chunk$set(echo = TRUE) in a chunk at the beginning of your document is the same of having ````{r echo = TRUE}` for all chunks.
-# You can also use it for setting other configs, like echo, eval, include and others 
+source('model_SSBtax_arranged.R')
+model_SSB
 ```
 
-## Inclution of our first steps (this header can be changed)
-
-```{r, include=FALSE}
-knitr::include_graphics('sup_data/230428_brainstorm1.JPG')
-```
-
-
-# Model with R
-#### Model from Sanghyo
-```{r, include=FALSE}
-#knitr::include_graphics('Sanghyo Mermaid.png')
-
-
-#knitr::read_chunk('Sanghyo.R')
-
-#source('Sanghyo.R')
-#Sanghyo
-
-```
-
-
-#### Model from Patrick 
-```{r, include=T}
-
-source('model_patrick.R')
-model_patrick
-```
-
-
-# Building a decision
-* **Research** 
-    + Where exists sugar taxes already? 
-    + for which products exist sugar taxes?
-    + add more...
-
-* **Positiv apsects** of a sugar tax:
-    + less sugar consumption --> benefit on health 
-    + add more... 
-
-* **Negativ aspects** of a sugar tax:
-    + higher cost for the consumer
-    + add more... 
-    
-* **Further aspects** 
-    + impacts on social relationships? e.g. kids birthday
