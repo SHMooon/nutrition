@@ -6,7 +6,7 @@ library(decisionSupport)
 # install.packages("DiagrammeR")
 library(DiagrammeR)
 
-model_patrick <- grViz("digraph {
+model_SSB <- grViz("digraph {
 compound=true
 graph[layout = dot, rankdir = LR]
 node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
@@ -77,7 +77,7 @@ subgraph cluster_assumptions {
   }
 
 }")
-model_patrick
+model_SSB
 
 
 # ipnut model with grViz ####
