@@ -12,80 +12,69 @@ graph[layout = dot, rankdir = LR]
 node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
 
 
-tax       [label = 'Sugar tax for SSB']
-tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
+            tax                     [label = 'Sugar tax for SSB']
+              tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
 
+            less_consum_SSB         [label = 'less consumption of SSB']
+            less_consum_sug         [label = 'less consumption of Sugar']
+            less_prod_sug           [label = 'less production of Sugar']
+            
+            cultivation_sugarbeet   [label = 'decreased sugar beet cultivation']
+            turnover_sugarbeet      [label = 'decreased turnover of sugar beets']
+            decreased_SSB_products  [label = 'decreased of SSB products']
+            decrease_SB_farmer      [label = 'decrease of sugar beet farmers']
+            
+            area                    [label = 'Increased areas for sustainable cultivations']
+            soil                    [label = 'changed soil properties']
+            
+            obecity                 [label = 'decreased obecity']
 
 subgraph cluster_assumptions { 
-      graph[rankdir = LR, label = 'Assumptions',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey]
+  graph[rankdir = LR, label = 'Assumptions',
+      fontsize = 28, shape = rectangle, style = dashed,
+      fontcolor = grey]
             
-            less_consum_SSB   [label = 'less consumption of SSB']
-            less_consum_sug   [label = 'less consumption of Sugar']
-            less_prod_sug   [label = 'less production of Sugar']
-
             less_consum_SSB -> less_consum_sug
   
       subgraph cluster_economic { 
-      graph[rankdir = TD, label = 'Economic',
+        graph[rankdir = TD, label = 'Economic',
             fontsize = 28, shape = rectangle, style = dashed,
             fontcolor = grey, color = orange]
 
-      cultivation_sugarbeet [label = 'decreased sugar beet cultivation']
-      turnover_sugarbeet    [label = 'decreased turnover of sugar beets']
-      decreased_SSB_products     [label = 'decreased of SSB products']
-      decrease_SB_farmer          [label = 'decrease of sugar beet farmers']
-      
-      cultivation_sugarbeet -> turnover_sugarbeet
-      less_prod_sug -> cultivation_sugarbeet
-      cultivation_sugarbeet -> decrease_SB_farmer
+            cultivation_sugarbeet -> turnover_sugarbeet
+            less_prod_sug -> cultivation_sugarbeet
+            cultivation_sugarbeet -> decrease_SB_farmer
 
-      }
-      less_consum_SSB -> decreased_SSB_products
-      less_consum_sug -> obecity
-      less_consum_SSB -> less_prod_sug
-      
-      turnover_sugarbeet -> area, soil
-     
-
+        }
+        less_consum_SSB -> decreased_SSB_products
       
       subgraph cluster_ecologic { 
-      graph[rankdir = TD, label = 'Ecologic',
+        graph[rankdir = TD, label = 'Ecologic',
             fontsize = 28, shape = rectangle, style = dashed,
             fontcolor = grey, color = green]
-
-      area          [label = 'Increased areas for sustainable cultivations']
-      soil          [label = 'changed soil properties']
-      }
+            
+            turnover_sugarbeet -> area, soil
+        }
       
       subgraph cluster_social { 
-      graph[rankdir = TD, label = 'Social',
+        graph[rankdir = TD, label = 'Social',
             fontsize = 28, shape = rectangle, style = dashed,
             fontcolor = grey, color = blue]
 
-      demo          [label = 'Demonstration against the tax']
-      gab           [label = 'Increases gab between poor and rich']
-      }
+            demo          [label = 'Demonstration against the tax']
+            gab           [label = 'Increases gab between poor and rich']
+            
+        }
       
       subgraph cluster_health { 
-      graph[rankdir = TD, label = 'Health',
+        graph[rankdir = TD, label = 'Health',
             fontsize = 28, shape = rectangle, style = dashed,
             fontcolor = grey, color = red]
 
-      obecity             [label = 'decreased obecity']
+            less_consum_sug -> obecity, less_prod_sug
+        }
       
-      }
-      
-
-Other_factors 
-
-obecity, turnover_sugarbeet, area, soil, demo, gab, Other_factors -> Calculation
-
-}
-
-Calculation -> NPV
-
+  }
 
 }")
 model_patrick
