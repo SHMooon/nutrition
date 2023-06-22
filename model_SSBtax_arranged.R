@@ -29,8 +29,8 @@ node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
             
             obecity                 [label = 'decreased obecity']
             
-            govtax                  [label = 'higher taxes for the goverment']
-
+            govtax                  [label = 'higher tax returns for the goverment']
+            loss_SSB_prod           [label = 'loss for SSB producers']
 subgraph cluster_assumptions { 
   graph[rankdir = LR, label = 'Assumptions',
       fontsize = 28, shape = rectangle, style = dashed,
@@ -38,7 +38,7 @@ subgraph cluster_assumptions {
             
             less_consum_SSB -> less_consum_sug
   
-      subgraph cluster_economic { 
+      subgraph cluster_economic {
         graph[rankdir = TD, label = 'Economic',
             fontsize = 28, shape = rectangle, style = dashed,
             fontcolor = grey, color = orange]
@@ -47,6 +47,8 @@ subgraph cluster_assumptions {
             less_prod_sug -> cultivation_sugarbeet
             cultivation_sugarbeet -> decrease_SB_farmer
             govtax
+            loss_SSB_prod
+            decreased_health_cost
 
         }
         less_consum_SSB -> decreased_SSB_products
@@ -79,7 +81,7 @@ subgraph cluster_assumptions {
         }
       
   }
-
+NPV
 }")
 model_SSB
 
