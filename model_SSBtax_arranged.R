@@ -28,6 +28,8 @@ node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
             soil                    [label = 'changed soil properties']
             
             obecity                 [label = 'decreased obecity']
+            
+            govtax                  [label = 'higher taxes for the goverment']
 
 subgraph cluster_assumptions { 
   graph[rankdir = LR, label = 'Assumptions',
@@ -44,6 +46,7 @@ subgraph cluster_assumptions {
             cultivation_sugarbeet -> turnover_sugarbeet
             less_prod_sug -> cultivation_sugarbeet
             cultivation_sugarbeet -> decrease_SB_farmer
+            govtax
 
         }
         less_consum_SSB -> decreased_SSB_products
@@ -72,6 +75,7 @@ subgraph cluster_assumptions {
             fontcolor = grey, color = red]
 
             less_consum_sug -> obecity, less_prod_sug
+            
         }
       
   }
