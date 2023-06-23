@@ -2,7 +2,9 @@
 title: "Reduce Sugar Consumption"
 author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
 date: "2023-06-23"
-output: ioslides_presentation
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -59,207 +61,76 @@ As we can see, there is [no SSB tax in Germany.]{.underline}
 ## Our Model
 
 ```{r ,include=F, echo=F}
-# load packages ####
 library(decisionSupport)
-# install.packages("DiagrammeR")
 library(DiagrammeR)
 
-B <- grViz("digraph {
+model_SSB <- grViz("digraph {
 compound=true
 graph[layout = dot, rankdir = LR]
 node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
-
-
-tax       [label = 'Sugar tax for SSB']
+tax                     [label = 'Sugar tax for SSB']
 tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
-
-
-subgraph cluster_assumptions { 
-      graph[rankdir = LR, label = 'Assumptions',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey]
-
-      subgraph cluster_economic { 
-      graph[rankdir = TD, label = 'Economic',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = orange]
-
-      cultivation_sugarbeet [label = 'Decreased sugar beet cultivation']
-      turnover_sugarbeet    [label = 'Decreased turnover of sugar beets']
-      
-      cultivation_sugarbeet -> turnover_sugarbeet
-      }
-      
-      subgraph cluster_ecologic { 
-      graph[rankdir = TD, label = 'Ecologic',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = green]
-
-      area          [label = 'Increased areas for sustainable cultivations']
-      soil          [label = 'changed soil properties']
-      }
-      
-      subgraph cluster_social { 
-      graph[rankdir = TD, label = 'Social',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = blue]
-
-      demo          [label = 'Demonstration against the tax']
-      gab           [label = 'Increases gab between poor and rich']
-      }
-      
-      subgraph cluster_health { 
-      graph[rankdir = TD, label = 'Health',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = red]
-
-      red_sugar           [label = 'Reduced Sugar consumption']
-      obecity             [label = 'less obecity']
-      
-      red_sugar -> obecity
-      }
-      
-
-Other_factors 
-
-obecity, turnover_sugarbeet, area, soil, demo, gab, Other_factors -> Calculation
-
-}
-
-Calculation -> NPV
-
-
-}")
-
-
-
-# ipnut model with grViz ####
-# presented: 16th of June 2023 
-
-model_patrick <- grViz("digraph {
+less_consum_SSB         [label = 'less consumption of SSB']
+less_consum_sug         [label = 'less consumption of Sugar']
+less_prod_sug           [label = 'less production of Sugar']
+ cultivation_sugarbeet   [label = 'decreased sugar beet cultivation']
+ turnover_sugarbeet      [label = 'decreased turnover of sugar beets']
+ decreased_SSB_products  [label = 'decreased of SSB products']
+ decrease_SB_farmer      [label = 'decrease of sugar beet farmers']
+ area                    [label = 'Increased areas for sustainable cultivations']
+  soil                    [label = 'changed soil properties']
+  obecity                 [label = 'decreased obecity']
+  govtax                  [label = 'higher tax returns for the goverment']
+  loss_SSB_prod           [label = 'loss for SSB producers']
+  subgraph cluster_assumptions { 
+  graph[rankdir = LR, label = 'Assumptions',
+  fontsize = 28, shape = rectangle, style = dashed,
+   fontcolor = grey]
+   
+   less_consum_SSB -> less_consum_sug
+   subgraph cluster_economic {
+    graph[rankdir = TD, label = 'Economic',
+    fontsize = 28, shape = rectangle, style = dashed,
+     fontcolor = grey, color = orange]
+     
+  cultivation_sugarbeet -> turnover_sugarbeet
+  less_prod_sug -> cultivation_sugarbeet
+  cultivation_sugarbeet -> decrease_SB_farmer
+   govtax
+   loss_SSB_prod
+   decreased_health_cost
+   }
+   
+  less_consum_SSB -> decreased_SSB_products
+  subgraph cluster_ecologic { 
+  graph[rankdir = TD, label = 'Ecologic',
+  fontsize = 28, shape = rectangle, style = dashed,
+  fontcolor = grey, color = green]
+  turnover_sugarbeet -> area, soil
+  }
   
-graph[layout = dot, rankdir = LR]
-node[style = filled, margin = 0.1, fillcolor = 'azure']
-
-
-I   [label = 'Input for Decision']
-pos [label = 'Positiv Support', fillcolor = 'green']
-neg [label = 'Negativ Support', fillcolor = 'red']
-
-sh  [label = 'Stakeholder', shape = rectangle]
-res [label = 'Results of Countries', shape = rectangle]
-
-gov [label = 'Goverment', shape = rectangle]
-ind [label = 'Individuals', shape = rectangle]
-sm [label = 'Supermarkets', shape = rectangle]
-man [label = 'Manufactories', shape = rectangle]
-
-rs  [label = 'Research', shape = rectangle]
-
-gov, ind, sm, man -> sh -> pos, neg
-rs -> res
-res -> pos, neg 
-pos, neg -> I
-
+  subgraph cluster_social { 
+  graph[rankdir = TD, label = 'Social',
+  fontsize = 28, shape = rectangle, style = dashed,
+  fontcolor = grey, color = blue]
+  demo          [label = 'Demonstration against the tax']
+  gab           [label = 'Increases gab between poor and rich']
+  }
+  subgraph cluster_health { 
+  graph[rankdir = TD, label = 'Health',
+  fontsize = 28, shape = rectangle, style = dashed,
+  fontcolor = grey, color = red]
+  less_consum_sug -> obecity, less_prod_sug
+  }
+  }
+NPV
 }")
+      
+
 ```
+
 
 ```{r, echo=F}
-B
+model_SSB
 ```
 
-## Our Model 
-
-
-```{r,include=F, echo=F}
-
-# load packages ####
-library(decisionSupport)
-# install.packages("DiagrammeR")
-library(DiagrammeR)
-
-model_patrick <- grViz("digraph {
-compound=true
-graph[layout = dot, rankdir = LR]
-node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
-
-
-tax       [label = 'Sugar tax for SSB']
-tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
-
-
-subgraph cluster_assumptions { 
-      graph[rankdir = LR, label = 'Assumptions',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey]
-            
-            less_consum_SSB   [label = 'less consumption of SSB']
-            less_consum_sug   [label = 'less consumption of Sugar']
-            less_prod_sug   [label = 'less production of Sugar']
-
-            less_consum_SSB -> less_consum_sug
-  
-      subgraph cluster_economic { 
-      graph[rankdir = TD, label = 'Economic',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = orange]
-
-      cultivation_sugarbeet [label = 'decreased sugar beet cultivation']
-      turnover_sugarbeet    [label = 'decreased turnover of sugar beets']
-      decreased_SSB_products     [label = 'decreased of SSB products']
-      decrease_SB_farmer          [label = 'decrease of sugar beet farmers']
-      
-      cultivation_sugarbeet -> turnover_sugarbeet
-      less_prod_sug -> cultivation_sugarbeet
-      cultivation_sugarbeet -> decrease_SB_farmer
-
-      }
-      less_consum_SSB -> decreased_SSB_products
-      less_consum_sug -> obecity
-      less_consum_SSB -> less_prod_sug
-      
-      turnover_sugarbeet -> area, soil
-     
-
-      
-      subgraph cluster_ecologic { 
-      graph[rankdir = TD, label = 'Ecologic',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = green]
-
-      area          [label = 'Increased areas for sustainable cultivations']
-      soil          [label = 'changed soil properties']
-      }
-      
-      subgraph cluster_social { 
-      graph[rankdir = TD, label = 'Social',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = blue]
-
-      demo          [label = 'Demonstration against the tax']
-      gab           [label = 'Increases gab between poor and rich']
-      }
-      
-      subgraph cluster_health { 
-      graph[rankdir = TD, label = 'Health',
-            fontsize = 28, shape = rectangle, style = dashed,
-            fontcolor = grey, color = red]
-
-      obecity             [label = 'decreased obecity']
-      
-      }
-      
-
-Other_factors 
-
-obecity, turnover_sugarbeet, area, soil, demo, gab, Other_factors -> Calculation
-
-}
-
-Calculation -> NPV
-
-
-}")
-
-
-```
