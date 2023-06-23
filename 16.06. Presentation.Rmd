@@ -9,10 +9,7 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
-
-
-## Countries with Sugar Sweetend Beverage Tax
+## Countries with Sugar Sweetened Beverage Tax
 
 ```{r ,include=F, echo=F}
 library(tmap)
@@ -39,8 +36,8 @@ A <- tm_shape(World)+
 A
 ```
 
-
 ## Input modell
+
 ```{r echo=F}
 library(decisionSupport)
 library(DiagrammeR)
@@ -101,4 +98,3 @@ node[style=filled]
           11->3 [style= 'dashed', color='firebrick']
 }")
 ```
-
