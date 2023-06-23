@@ -6,9 +6,79 @@ library(decisionSupport)
 # install.packages("DiagrammeR")
 library(DiagrammeR)
 
+grViz("digraph {
+compound=true
+graph[layout = dot, rankdir = LR]
+node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
+
+
+tax       [label = 'Sugar tax for SSB']
+tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
+
+
+subgraph cluster_assumptions { 
+      graph[rankdir = LR, label = 'Assumptions',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey]
+
+      subgraph cluster_economic { 
+      graph[rankdir = TD, label = 'Economic',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = orange]
+
+      cultivation_sugarbeet [label = 'Decreased sugar beet cultivation']
+      turnover_sugarbeet    [label = 'Decreased turnover of sugar beets']
+      
+      cultivation_sugarbeet -> turnover_sugarbeet
+      }
+      
+      subgraph cluster_ecologic { 
+      graph[rankdir = TD, label = 'Ecologic',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = green]
+
+      area          [label = 'Increased areas for sustainable cultivations']
+      soil          [label = 'changed soil properties']
+      }
+      
+      subgraph cluster_social { 
+      graph[rankdir = TD, label = 'Social',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = blue]
+
+      demo          [label = 'Demonstration against the tax']
+      gab           [label = 'Increases gab between poor and rich']
+      }
+      
+      subgraph cluster_health { 
+      graph[rankdir = TD, label = 'Health',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = red]
+
+      red_sugar           [label = 'Reduced Sugar consumption']
+      obecity             [label = 'less obecity']
+      
+      red_sugar -> obecity
+      }
+      
+
+Other_factors 
+
+obecity, turnover_sugarbeet, area, soil, demo, gab, Other_factors -> Calculation
+
+}
+
+Calculation -> NPV
+
+
+}")
+
+
 
 # ipnut model with grViz ####
-grViz("digraph {
+# presented: 16th of June 2023 
+
+model_patrick <- grViz("digraph {
   
 graph[layout = dot, rankdir = LR]
 node[style = filled, margin = 0.1, fillcolor = 'azure']
