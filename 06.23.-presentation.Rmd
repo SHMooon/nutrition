@@ -11,28 +11,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Sugar Sweetened Beverages (SSBs)
 
-<<<<<<< HEAD
--   like soft drinks, energy drinks, fruit nectar drinks, etc.
--   a high consumption of SSB is problematic -\> many health issues like obesity, diabetes etc -\> decrease the life quality of individual people & burden on the public health system
-=======
-- soft drinks, energy drinks, fruit nectar drinks etc. 
-- many associated health issues
---> decrease life quality of individual people
---> burden on the public health system 
->>>>>>> 05e98897c531956da9a960fc302f3a9f9711eb39
+-   soft drinks, energy drinks, fruit nectar drinks etc.
+-   many associated health issues → decrease life quality of individual people → burden on the public health system
 
 ## SSB TAX
 
--   a tax aims to internalize the external costs of high sugar consumption for the society.
--   increasing the prices of SSBs -\> reduction of consumption: has been proven in several countries.
--   the higher tax returns can then be invented in the health sector, further promoting health and well-being of the population.
-
-## SSB tax
-
-- to internalize the external costs of high sugar consumption 
-- higher prices of SSBs -> lower consumption: proven for several countries 
-- tax returns can be reinvested in health sector
-
+-   to internalize the external costs of high sugar consumption
+-   higher prices of SSBs →
+    -   lower consumption: proven for several countries
+    -   tax returns can be reinvested in health sector
 
 ## Countries with SSB tax
 
@@ -61,22 +48,13 @@ A <- tm_shape(World)+
 A
 ```
 
-<<<<<<< HEAD
-as we see there is no SSB tax in Germany
+As we can see, there is [no SSB tax in Germany.]{.underline}
 
 ## Decision
 
-### Decision: Introduction of a Tax on SSBs in Germany
-=======
-  As we can see, there is no SSB tax in Germany.
+### **Decision**: Introduction of a tax on SSBs in germany
 
-## Decision
-
-### Decision: Introduction of a tax on SSBs in germany
-### Decision maker: German government 
->>>>>>> 05e98897c531956da9a960fc302f3a9f9711eb39
-
-### Decision maker: German Government
+### **Decision maker**: German government
 
 ## Our Model
 
@@ -188,4 +166,100 @@ pos, neg -> I
 
 ```{r, echo=F}
 B
+```
+
+## Our Model 
+
+
+```{r,include=F, echo=F}
+
+# load packages ####
+library(decisionSupport)
+# install.packages("DiagrammeR")
+library(DiagrammeR)
+
+model_patrick <- grViz("digraph {
+compound=true
+graph[layout = dot, rankdir = LR]
+node[style = filled, margin = 0.1, fillcolor = 'azure', shape = rectangle]
+
+
+tax       [label = 'Sugar tax for SSB']
+tax -> cultivation_sugarbeet[lhead = cluster_assumptions]
+
+
+subgraph cluster_assumptions { 
+      graph[rankdir = LR, label = 'Assumptions',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey]
+            
+            less_consum_SSB   [label = 'less consumption of SSB']
+            less_consum_sug   [label = 'less consumption of Sugar']
+            less_prod_sug   [label = 'less production of Sugar']
+
+            less_consum_SSB -> less_consum_sug
+  
+      subgraph cluster_economic { 
+      graph[rankdir = TD, label = 'Economic',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = orange]
+
+      cultivation_sugarbeet [label = 'decreased sugar beet cultivation']
+      turnover_sugarbeet    [label = 'decreased turnover of sugar beets']
+      decreased_SSB_products     [label = 'decreased of SSB products']
+      decrease_SB_farmer          [label = 'decrease of sugar beet farmers']
+      
+      cultivation_sugarbeet -> turnover_sugarbeet
+      less_prod_sug -> cultivation_sugarbeet
+      cultivation_sugarbeet -> decrease_SB_farmer
+
+      }
+      less_consum_SSB -> decreased_SSB_products
+      less_consum_sug -> obecity
+      less_consum_SSB -> less_prod_sug
+      
+      turnover_sugarbeet -> area, soil
+     
+
+      
+      subgraph cluster_ecologic { 
+      graph[rankdir = TD, label = 'Ecologic',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = green]
+
+      area          [label = 'Increased areas for sustainable cultivations']
+      soil          [label = 'changed soil properties']
+      }
+      
+      subgraph cluster_social { 
+      graph[rankdir = TD, label = 'Social',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = blue]
+
+      demo          [label = 'Demonstration against the tax']
+      gab           [label = 'Increases gab between poor and rich']
+      }
+      
+      subgraph cluster_health { 
+      graph[rankdir = TD, label = 'Health',
+            fontsize = 28, shape = rectangle, style = dashed,
+            fontcolor = grey, color = red]
+
+      obecity             [label = 'decreased obecity']
+      
+      }
+      
+
+Other_factors 
+
+obecity, turnover_sugarbeet, area, soil, demo, gab, Other_factors -> Calculation
+
+}
+
+Calculation -> NPV
+
+
+}")
+
+
 ```
