@@ -11,8 +11,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Sugar Sweetened Beverages (SSBs)
 
+<<<<<<< HEAD
 -   like soft drinks, energy drinks, fruit nectar drinks, etc.
 -   a high consumption of SSB is problematic -\> many health issues like obesity, diabetes etc -\> decrease the life quality of individual people & burden on the public health system
+=======
+- soft drinks, energy drinks, fruit nectar drinks etc. 
+- many associated health issues
+--> decrease life quality of individual people
+--> burden on the public health system 
+>>>>>>> 05e98897c531956da9a960fc302f3a9f9711eb39
 
 ## SSB TAX
 
@@ -20,7 +27,14 @@ knitr::opts_chunk$set(echo = FALSE)
 -   increasing the prices of SSBs -\> reduction of consumption: has been proven in several countries.
 -   the higher tax returns can then be invented in the health sector, further promoting health and well-being of the population.
 
-## Countries with SSB- Tax
+## SSB tax
+
+- to internalize the external costs of high sugar consumption 
+- higher prices of SSBs -> lower consumption: proven for several countries 
+- tax returns can be reinvested in health sector
+
+
+## Countries with SSB tax
 
 ```{r ,include=F, echo=F}
 library(tmap)
@@ -47,11 +61,20 @@ A <- tm_shape(World)+
 A
 ```
 
+<<<<<<< HEAD
 as we see there is no SSB tax in Germany
 
 ## Decision
 
 ### Decision: Introduction of a Tax on SSBs in Germany
+=======
+  As we can see, there is no SSB tax in Germany.
+
+## Decision
+
+### Decision: Introduction of a tax on SSBs in germany
+### Decision maker: German government 
+>>>>>>> 05e98897c531956da9a960fc302f3a9f9711eb39
 
 ### Decision maker: German Government
 
