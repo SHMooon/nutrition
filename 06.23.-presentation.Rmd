@@ -9,20 +9,22 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Sugar Sweetened Beverages (SSBs) & SSB Tax
-#### Sugar Sweetended Beverages
+## Sugar Sweetened Beverages (SSBs)
+
 - soft drinks, energy drinks, fruit nectar drinks etc. 
 - many associated health issues
 --> decrease life quality of individual people
 --> burden on the public health system 
 
-#### SSB TAX
+
+## SSB tax
+
 - to internalize the external costs of high sugar consumption 
 - higher prices of SSBs -> lower consumption: proven for several countries 
 - tax returns can be reinvested in health sector
 
 
-## Countries with SSB- Tax
+## Countries with SSB tax
 
 ```{r ,include=F, echo=F}
 library(tmap)
@@ -53,8 +55,8 @@ A
 
 ## Decision
 
-### Decision: Introduction of a Tax on SSBs in Germany
-### Decision maker: German Government 
+### Decision: Introduction of a tax on SSBs in germany
+### Decision maker: German government 
 
 
 ## Our Modell
