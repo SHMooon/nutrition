@@ -1,0 +1,7 @@
+Description,Label,variable,distribution,lower ,median,upper
+,SBB consumption (%),Rate_of_SBB_Consumption,norm,1,,10
+,Diabetes population (%),Rate_of_Diabetes_Population,norm,10,,20
+,Risk of Diabetes with 1-10% SBB consumption (%),Rate_of_Risk_of_Diabetes_with_lower_consumption,tnorm_0_1,0.1,,0.5
+,Risk of Diabetes with 10-20% SBB consumption (%),Rate_of_Risk_of_Diabetes_with_higher_consumption,tnorm_0_1,0.5,,0.9
+Years from the start o the implementation of the intervention to the end.,Project time horizon (years),n_years,const,5,,5
+"Coefficient of variation, ratio of the standard deviation to the mean (a measure of relative variability).",coeff. Variation,var_CV,posnorm,5,,20
