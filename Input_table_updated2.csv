@@ -1,0 +1,15 @@
+description,label,variable,distribution,lower,median,upper,Unit
+Establishment cost,Government implementation,intervention_costs_admin,posnorm,1371265500.00 ,,1782645150.00 ,Euro
+,Industry compliance,intervention_costs_prod,posnorm,1353124040.00 ,,1791975080.00 ,Euro
+,Costs for accompanying campaigns/public information,intervention_costs_info,posnorm,1000000.00 ,,5000000.00 ,Euro
+Reduced incidences of,Diabetes,red_diabetes,posnorm,160400.00 ,,285770.00 ,Case
+,Obesity,red_obesity,posnorm,1604000.00 ,,2857700.00 ,Case
+,Cancer,red_cancer,posnorm,16040.00 ,,28577.00 ,Case
+Saved health care costs,Diabetes,saved_diabetes,posnorm,1526835910.00 ,,2724533540.00 ,Euro
+,Obesity,saved_obesity,posnorm,152683591.00 ,,272453354.00 ,Euro
+,Cancer,saved_cancer,posnorm,1526835910.00 ,,2724533540.00 ,Euro
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
