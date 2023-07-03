@@ -1,91 +1,78 @@
+
+
 library(decisionSupport)
-example_decision_function <- function(x, varnames){
+
+
+decision_SSB_Tax <- function(x, varnames){
+  
+  
+  #Estimate Saved cost of Diabetes care
+  
+  saved_diabetes <- red_diabetes * saved_diabetes
+  
+  #Estimate Saved cost of Obesities care
+  
+  saved_obesities <- red_obesity * saved_obesity
+  
+  #Estimate Saved cost of Cancers care
+  saved_cancer <- red_cancer * saved_cancer
+  
+  #calculation saved Health care 
+  saved_health_care <- sum(saved_diabetes + saved_obesities +
+                             saved_cancer)
+  
+  #Estimate implement cost 
+  
+  implementation_cost <- sum(intervention_costs_admin + intervention_costs_prod + 
+                               intervention_costs_info)
+  
+  #Esitmate final result (saving - cost)
+  final_result <- saved_health_care - implementation_cost
+ 
+  
+  
+  #not clear
+  NPV_interv <-
+    discount(result_interv, discount_rate, calculate_NPV = TRUE)
+  
+  NPV_n_interv <-
+    discount(result_n_interv, discount_rate, calculate_NPV = TRUE)
+  
+  
+  return(list(Interv_NPV = NPV_interv,
+              NO_Interv_NPV = NPV_n_interv,
+              NPV_decision_do = NPV_interv - NPV_n_interv,
+              Cashflow_decision_do = result_interv - result_n_interv))
   
   
   
-  # pre-calculate common random draws for all intervention model runs ####
   
-  # benefits of Consumption
-  precalc_intervention_Consumption<-
-    vv(Rate_of_SBB_Consumption, var_CV, n_years) *
-    vv(Rate_of_Diabetes_Population, var_CV, n_years) *
-    
-    
-    # benefits of Risk
-    precalc_intervention_Risk <-
-      vv(Rate_of_Risk_of_Diabetes_with_lower_consumption, var_CV, n_years) *
-      vv(Rate_of_Risk_of_Diabetes_with_higher_consumption, var_CV, n_years) *
-      
-      
-      #  Intervention ####
-    
-    for (SSB_Tax in c(FALSE,TRUE)){
-      
-      if (SSB_Tax){
-        
-        intervention_strips <- TRUE
-        intervention_strips_PlanningCost <- TRUE
-        intervention_strips_cost <- TRUE
-      } else
-      {
-        intervention_strips <- FALSE
-        intervention_strips_PlanningCost <- FALSE
-        intervention_strips_cost <- FALSE
-      }
-      
-      
-      # Benefits from  cultivation in the intervention strips ####
-      
-      intervention_Consumption <-
-        as.numeric(intervention_strips) * precalc_intervention_Consumption
-      intervention_Risk <-
-        as.numeric(intervention_strips) * precalc_intervention_Risk
-      
-      # Total benefits from crop production (agricultural development and riparian zone) ####
-      SSB_Tax <-
-        intervention_Consumption +
-        intervention_Risk 
-      
-      # Benefits from livestock ####
-      # The following allows considering that intervention strips may
-      # restrict access to the reservoir for livestock.
-      
-    }#close intervention loop bracket
-    
-    NPV_interv <-
-      discount(result_interv, discount_rate, calculate_NPV = TRUE)
-    
-    NPV_n_interv <-
-      discount(result_n_interv, discount_rate, calculate_NPV = TRUE)
-    
-    # Beware, if you do not name your outputs 
-    # (left-hand side of the equal sign) in the return section, 
-    # the variables will be called output_1, _2, etc.
-    
-    return(list(Interv_NPV = NPV_interv,
-                NO_Interv_NPV = NPV_n_interv,
-                NPV_decision_do = NPV_interv - NPV_n_interv,
-                Cashflow_decision_do = result_interv - result_n_interv))
+  #Generate the list of outputs from the Monte Carlo simulation 
+  return(list(final_result))
+  
 }
 
+
 library(readr)
-example_input_table <- read_csv("probe.csv")
-example_input_table
+input_table <- read_csv("Input_table_updated_3.csv")
+input_table
+
+
 names(input_table)
 
 
 ###Model assessment###
-mcSimulation_results <- decisionSupport::mcSimulation(
-  estimate = decisionSupport::estimate_read_csv("probe.csv"),
-  model_function = example_decision_function,
-  numberOfModelRuns = 200,
+mcSimulation_results <- mcSimulation(estimate = 
+      estimate_read_csv("Input_table_updated2.csv"),
+  model_function = decision_SSB_Tax,
+  numberOfModelRuns = 500,
   functionSyntax = "plainNames"
 )
 
 ###Plot Net Present Value (NPV) distributions###
 
 decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results, 
-                                    vars = c("Interv_NPV", "NO_Interv_NPV"),
+                                    vars ,
                                     method = 'smooth_simple_overlay', 
                                     base_size = 7)
 
