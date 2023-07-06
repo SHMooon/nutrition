@@ -51,7 +51,7 @@ decision_SSB_Tax <- function(x, varnames){
 
 
 library(readr)
-input_table <- read_csv("Input_table_updated_3.csv")
+input_table <- read_csv("input_table_updated_3.csv")
 input_table
 
 
@@ -60,7 +60,7 @@ names(input_table)
 
 ###Model assessment###
 mcSimulation_results <- mcSimulation(estimate = 
-                                       estimate_read_csv("Input_table_updated_3.csv"),
+                                       estimate_read_csv("input_table_updated_3.csv"),
                                      model_function = decision_SSB_Tax,
                                      numberOfModelRuns = 500,
                                      functionSyntax = "plainNames"
