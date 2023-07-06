@@ -30,3 +30,6 @@ hiiiiii
 # until 16.06. decision & structure the decusion model
 
 #may be add dental caries? 
+
+# type 2 diabetis 
+Per capita costs for people with Type 2 diabetes amounted to €4,957 in 2009 and €5,146 in 2010. People with Type 2 diabetes had 1.7-fold higher health expenses than people without diabetes. The largest differences in health expenses were found for prescribed medication from pharmacies (cost ratio diabetes/no diabetes: 2.2) and inpatient treatment (1.8). Ten percent of the total statutory health insurance expense, in total €16.1 billion, was attributable to the medical care of people with Type 2 diabetes. 
