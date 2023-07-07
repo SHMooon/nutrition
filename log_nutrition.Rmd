@@ -1,6 +1,6 @@
 ---
-title: "Log file of the nutrition project"
-author: "Patrick Frey"
+title: "Written part"
+author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
 date: "`r Sys.Date()`"
 output:
   html_document: default

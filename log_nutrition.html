@@ -11,7 +11,7 @@
 
 <meta name="author" content="Patrick Frey" />
 
-<meta name="date" content="2023-06-20" />
+<meta name="date" content="2023-07-07" />
 
 <title>Log file of the nutrition project</title>
 
@@ -1566,7 +1566,7 @@ display: none;
 
 <h1 class="title toc-ignore">Log file of the nutrition project</h1>
 <h4 class="author">Patrick Frey</h4>
-<h4 class="date">2023-06-20</h4>
+<h4 class="date">2023-07-07</h4>
 
 </div>
 
@@ -1584,8 +1584,8 @@ display: none;
 <h4>Model from Patrick</h4>
 <pre class="r"><code>source(&#39;model_patrick.R&#39;)
 model_patrick</code></pre>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9fbc1e7d0d34730a098e" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9fbc1e7d0d34730a098e">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\nnode[style = filled, margin = 0.1, fillcolor = \"azure\"]\n\n\nI   [label = \"Input for Decision\"]\npos [label = \"Positiv Support\", fillcolor = \"green\"]\nneg [label = \"Negativ Support\", fillcolor = \"red\"]\n\nsh  [label = \"Stakeholder\", shape = rectangle]\nres [label = \"Results of Countries\", shape = rectangle]\n\ngov [label = \"Goverment\", shape = rectangle]\nind [label = \"Individuals\", shape = rectangle]\nsm [label = \"Supermarkets\", shape = rectangle]\nman [label = \"Manufactories\", shape = rectangle]\n\nrs  [label = \"Research\", shape = rectangle]\n\ngov, ind, sm, man -> sh -> pos, neg\nrs -> res\nres -> pos, neg \npos, neg -> I\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5a8d94cbcc0b6d99d5fc" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5a8d94cbcc0b6d99d5fc">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot, rankdir = LR]\nnode[style = filled, margin = 0.1, fillcolor = \"azure\"]\n\n\nI   [label = \"Input for Decision\"]\npos [label = \"Positiv Support\", fillcolor = \"green\"]\nneg [label = \"Negativ Support\", fillcolor = \"red\"]\n\nsh  [label = \"Stakeholder\", shape = rectangle]\nres [label = \"Results of Countries\", shape = rectangle]\n\ngov [label = \"Goverment\", shape = rectangle]\nind [label = \"Individuals\", shape = rectangle]\nsm [label = \"Supermarkets\", shape = rectangle]\nman [label = \"Manufactories\", shape = rectangle]\n\nrs  [label = \"Research\", shape = rectangle]\n\ngov, ind, sm, man -> sh -> pos, neg\nrs -> res\nres -> pos, neg \npos, neg -> I\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="building-a-decision" class="section level1">
