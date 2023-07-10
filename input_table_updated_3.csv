@@ -15,4 +15,4 @@ Tax income for the government,Tax revenue,revenue_tax_euro,const,19200000.00,,19
 Discount rate (%),Discount rate (%),discount_rate,posnorm,1.00,,5.00,%
 Years from the start o the implementation of the intervention to the end.,Project time horizon (years),n_years,const,10,,10,
 "Coefficient of variation, ratio of the standard deviation to the mean (a measure of relative variability).",coeff. Variation,var_CV,posnorm,5,,20,
-,Maintenance cost ,maintenance_intervention_SSB_Tax,posnorm,270000000,,360000000,Euro
+,Maintenance cost ,maintenance_intervention_SSB_Tax,posnorm,27000000,,36000000,Euro
