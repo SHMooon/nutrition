@@ -4,7 +4,7 @@ make_variables<-function(est,n=1)
 { x<-random(rho=est, n=n)
 for(i in colnames(x)) assign(i, as.numeric(x[1,i]),envir=.GlobalEnv)}
 
-make_variables(estimate_read_csv("Input_table_updated_3.csv"))
+make_variables(estimate_read_csv("Presentation/input_table_updated_3.csv"))
 
 
 
@@ -25,7 +25,7 @@ example_decision_function <- function(x, varnames){
   
   
   # pre-calculate common random draws for all intervention model runs ####
-  #saved health care cost after implementation of tax and Tax revenue 
+  #health care cost after implementation of tax and Tax revenue 
   
   precalc_HC_with_interv_DI <- (vv(total_diabetes_case, var_CV, n_years)*
                                   vv(cost_diabetes_euro, var_CV, n_years)) - 
@@ -139,13 +139,13 @@ example_decision_function <- function(x, varnames){
 }
 
 library(readr)
-input_table <- read_csv("Input_table_updated_3.csv")
+input_table <- read.csv("Presentation/input_table_updated_3.csv")
 names(input_table)
 
 
 ###Model assessment###
 mcSimulation_results1 <- mcSimulation(estimate = 
-                                        estimate_read_csv("Input_table_updated_3.csv"),
+                                        estimate_read_csv("Presentation/Input_table_updated_3.csv"),
                                       model_function = example_decision_function,
                                       numberOfModelRuns = 1000,
                                       functionSyntax = "plainNames"
@@ -181,9 +181,12 @@ plot_cashflow(mcSimulation_object = mcSimulation_results1,
 
 #here we subset the outputs from the mcSimulation function (y) by selecting the correct variables
 # choose this carefully and be sure to run the multi_EVPI only on the variables that the you want
+#EVPI = (EOL : Expected Opportunity Loss)
+
 mcSimulation_table <- data.frame(mcSimulation_results1$x, mcSimulation_results1$y[1:3])
 
 evpi <- multi_EVPI(mc = mcSimulation_table, first_out_var = "Imple_NPV")
+
 
 plot_evpi(evpi, decision_vars = "NPV_decision_do")
 
