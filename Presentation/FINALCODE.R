@@ -190,6 +190,7 @@ evpi <- multi_EVPI(mc = mcSimulation_table, first_out_var = "Imple_NPV")
 
 plot_evpi(evpi, decision_vars = "NPV_decision_do")
 
+
 #put here mcSimulation_result instead of pls_result
 compound_figure(mcSimulation_object = mcSimulation_results1, 
                 input_table = input_table, 
