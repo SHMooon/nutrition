@@ -1,0 +1,46 @@
+---
+title: "Implementation of a sugar tax for SSB"
+author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
+date: "`r Sys.Date()`"
+output: html_document
+---
+<!-- LOADING DATA -->
+```{r, include = F}
+model_first   <- knitr::include_graphics('files/model_first.png')
+model_last    <- knitr::include_graphics('files/model_last.png')
+
+```
+
+
+
+## Introduction
+
+### What are SSBs and why should they be taxed?
+SSBs are sugar-sweetened beverages, like soft drinks. A high consumption of these drinks is problematic as a high sugar consumption can lead to many health issues like obesity, diabetes etc., which not only decrease the life quality of individual people but are also a burden on the public health system. 
+In Germany, SSBs are one of the main sources of added sugar intake. So targeting SSBs to reach the goal of overall reduction in sugar consumption seems promising.
+A tax aims to internalize the external costs of high sugar consumption for the society. By increasing the prices of SSBs, consumption can be reduced, which has been proven in several countries that already introduced this tax. Alternative interventions with the aim of reduced sugar consumption could be awareness raising campaigns on the individual level or changing what kind of drinks are offered and how on the supermarket level. While these are certainly useful interventions to accompany the introduction of the tax, they are very complex and costly processes. The introduction of a tax seems easier and quicker to apply, with a nationwide impact. It is recommended as a measure e.g. by WHO and UNICEF.
+Also, the higher tax returns can then be invested in the health sector, further promoting health and wellbeing of the population.
+Germany doesn’t have this kind of tax. The official statement to that is that there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity.
+(Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910)
+Instead, Germany currently has a national strategy (NRI, 2019-25) running that aims at reducing sugar contents of heavily processed food/drinks mainly. It also includes awareness raising campaigns.
+(Source: https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html)
+
+### Proven impacts of a tax on SSBs in other countries
+- A 10% tax levied against SSBs has been shown to lead to an 8-10% reduction in purchase and consumption
+- A 20% tax on SSBs has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
+- SSB taxes can significantly reduce the incidence of type-2 diabetes, heart disease, stroke, and premature mortality
+- SSB taxes have resulted in substantial increases in government revenue
+- No evidence of negative impact on employment was found 
+(Source: UNICEF (2022). Policy Brief – Sugar-Sweetened Beverage Taxation.)
+
+
+## Model
+```{r}
+model_first
+model_last
+```
+
+## Calculation
+
+## Plots
+
