@@ -52,8 +52,6 @@ data("World")
 library(readxl)
 SSB_Tax_Database_Feb23 <- read_excel("SSB-Tax-Database-Feb23.xlsx")
 
-
-
 SSB_World <- merge(World, SSB_Tax_Database_Feb23, by.x="iso_a3", by.y="wb_code")
 
 tm_shape(World)+
