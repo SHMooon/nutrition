@@ -1,7 +1,11 @@
 # SSB Tax
 
 ## in Archiv folder
-the files that we used before 09.07.2023
+the files which we used before 09.07.2023
 
 ## in Presentation folder
-all the files that we need for presentation and final R file.
+- Final R file
+- R Markdown file
+- Modell 
+- references
+- pictures 
