@@ -40,10 +40,10 @@ taxmap              <- knitr::include_graphics('files/taxmap.png')
 
 ### Why did we choose Germany?
 * Germany doesn’t have this kind of tax at the moment
-* officially because “there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity”
-Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910
-* Instead, Germany has a national strategy (NRI, 2019-25) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns
-Source: https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html
+* officially because “there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity”  
+*Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910*
+* Instead, Germany has a national strategy (NRI, 2019-25) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns  
+Source: *https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html*
 
 <center>
 ```{r, echo=FALSE}
