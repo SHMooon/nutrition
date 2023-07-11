@@ -3,6 +3,7 @@ title: "Implementation of a sugar tax for SSB"
 author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
 date: "`r Sys.Date()`"
 output: html_document
+
 ---
 <!-- LOADING DATA -->
 ```{r, include = F}
@@ -90,6 +91,8 @@ model_last
 ```
 </center>
 
-## what else? 
-* github link to the repository 
+## Sources
+<!--Insert sources here --> 
+
+To see all the data we used, please visit our [GitHub-Repository](https://github.com/SHMooon/nutrition)
 
