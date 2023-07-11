@@ -107,7 +107,8 @@ example_decision_function <- function(x, varnames){
     ## Total cost with SSB tax##
     if (decision_implementation_SSB_Tax){
       
-      net_health_care_cost_with_imple <-  precalc_HC_with_interv_total  + intervention_cost - imple_tax_revenue
+      net_health_care_cost_with_imple <-  
+        precalc_HC_with_interv_total  + intervention_cost - imple_tax_revenue
       #-(Healthcare cost with intervention -intervention implementation cost + tax_difference due to internvention)
       
       result_imple <- net_health_care_cost_with_imple
@@ -134,9 +135,12 @@ example_decision_function <- function(x, varnames){
   
   return(list(Imple_NPV =  - NPV_imple,
               NO_Imple_NPV = - NPV_n_imple,
-              NPV_decision_do =  NPV_n_imple- NPV_imple ,
+              NPV_decision_do =  NPV_n_imple - NPV_imple ,
               Cashflow_decision_do =  result_n_imple - result_imple))
 }
+
+
+
 
 library(readr)
 input_table <- read.csv("Presentation/input_table_updated_3.csv")
@@ -177,11 +181,15 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 plot_cashflow(mcSimulation_object = mcSimulation_results1, 
               cashflow_var_name = "Cashflow_decision_do")
 
+
 ###Value of Information (VoI) analysis###
 
 #here we subset the outputs from the mcSimulation function (y) by selecting the correct variables
 # choose this carefully and be sure to run the multi_EVPI only on the variables that the you want
+
 #EVPI = (EOL : Expected Opportunity Loss)
+
+
 
 mcSimulation_table <- data.frame(mcSimulation_results1$x, mcSimulation_results1$y[1:3])
 
@@ -197,10 +205,11 @@ compound_figure(mcSimulation_object = mcSimulation_results1,
                 plsrResults = mcSimulation_results1, 
                 EVPIresults = evpi, decision_var_name = "NPV_decision_do", 
                 cashflow_var_name = "Cashflow_decision_do", 
-                base_size = 7)
+                base_size = 5)
 
 
 ###Projection to Latent Structures (PLS) analysis###
+
 
 pls_result <- plsr.mcSimulation(object = mcSimulation_results1,
                                 resultName = names(mcSimulation_results1$y)[3], ncomp = 1)

@@ -77,7 +77,7 @@ tm_shape(mergeData)+
  ####### make data numeric by 2021!!!!!####
 
 library(readxl)
-SSB_Tax_Database_Feb23 <- read_excel("Sanghyo/SSB-Tax-Database-Feb23.xlsx")
+SSB_Tax_Database_Feb23 <- read_excel("Archiv/Sanghyo/SSB-Tax-Database-Feb23.xlsx")
 
 
 
