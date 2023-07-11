@@ -6,8 +6,10 @@ output: html_document
 ---
 <!-- LOADING DATA -->
 ```{r, include = F}
-model_first   <- knitr::include_graphics('files/model_first.png')
-model_last    <- knitr::include_graphics('files/model_last.png')
+model_first_clean   <- knitr::include_graphics('files/model_first_clean.png')
+model_first         <- knitr::include_graphics('files/model_first.png')
+model_last          <- knitr::include_graphics('files/model_last.png')
+taxmap              <- knitr::include_graphics('files/taxmap.png')
 
 ```
 
@@ -15,32 +17,79 @@ model_last    <- knitr::include_graphics('files/model_last.png')
 
 ## Introduction
 
-### What are SSBs and why should they be taxed?
-SSBs are sugar-sweetened beverages, like soft drinks. A high consumption of these drinks is problematic as a high sugar consumption can lead to many health issues like obesity, diabetes etc., which not only decrease the life quality of individual people but are also a burden on the public health system. 
-In Germany, SSBs are one of the main sources of added sugar intake. So targeting SSBs to reach the goal of overall reduction in sugar consumption seems promising.
-A tax aims to internalize the external costs of high sugar consumption for the society. By increasing the prices of SSBs, consumption can be reduced, which has been proven in several countries that already introduced this tax. Alternative interventions with the aim of reduced sugar consumption could be awareness raising campaigns on the individual level or changing what kind of drinks are offered and how on the supermarket level. While these are certainly useful interventions to accompany the introduction of the tax, they are very complex and costly processes. The introduction of a tax seems easier and quicker to apply, with a nationwide impact. It is recommended as a measure e.g. by WHO and UNICEF.
-Also, the higher tax returns can then be invested in the health sector, further promoting health and wellbeing of the population.
-Germany doesn’t have this kind of tax. The official statement to that is that there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity.
-(Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910)
-Instead, Germany currently has a national strategy (NRI, 2019-25) running that aims at reducing sugar contents of heavily processed food/drinks mainly. It also includes awareness raising campaigns.
-(Source: https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html)
+### What are Sugar-Sweetened Beverages (SSBs)?
+* soft drinks, energy drinks, fruit nectar drinks etc.
+* one of the main sources of added sugar intake in Germany
+* many associated health issues, that lead to decrease life quality of individual people and are also a burden on the public health system
 
-### Proven impacts of a tax on SSBs in other countries
-- A 10% tax levied against SSBs has been shown to lead to an 8-10% reduction in purchase and consumption
-- A 20% tax on SSBs has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
-- SSB taxes can significantly reduce the incidence of type-2 diabetes, heart disease, stroke, and premature mortality
-- SSB taxes have resulted in substantial increases in government revenue
-- No evidence of negative impact on employment was found 
-(Source: UNICEF (2022). Policy Brief – Sugar-Sweetened Beverage Taxation.)
+### And why should they be taxed?
+* to internalize the external costs of high sugar consumption for the society
+* higher prices of SSBs lead to lower consumption: proven for several countries
+  + a 10% tax levied against SSBs has been shown to lead to an 8-10% reduction in purchase and consumption
+  + a 20% tax on SSBs has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
+  + SSB taxes can significantly reduce the incidence of type-2 diabetes, heart disease, stroke, and premature mortality
+  + SSB taxes have resulted in substantial increases in government revenue
+  + no evidence of negative impact on employment was found (UNICEF (2022))
+* tax returns can be reinvested in health sector, further promoting health and well-being of the population
+* alternative interventions to reduce sugar consumption on the individual and producer/retailer level often show effects slower and are more costly; they are still useful to accompany a tax introduction 
+* recommended by WHO and UNICEF because
+
+### Why did we choose Germany?
+* Germany doesn’t have this kind of tax at the moment
+* officially because “there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity”
+Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910
+* Instead, Germany has a national strategy (NRI, 2019-25) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns
+Source: https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html
+
+<center>
+```{r, echo=FALSE}
+taxmap
+```
+</center>
+
+**Decision:** Introducing a tax on SSBs in Germany
+
+**Decision maker:** German government
+
+### Underlying assumptions of the model
+* higher prices lead to lower consumption of SSBs
+  + important to declare the tax separately on the label and explain about negative health consequences to make the tax more effective
+  + awareness raising campaigns and public information also important
+  + some people might feel patronized and consume even more
+* lower consumption of SSBs leads to lower consumption of sugar
+  + people might substitute with other sugar-rich products
 
 
-## Model
-```{r}
-model_first
+## Modeling 
+### Model with a broad approach
+SOME TEXT 
+
+<center>
+```{r, echo=FALSE}
+model_first_clean
+```
+</center>
+
+### Model for Decision Analysis
+Our decision model will be based on how much German government can save or lose after implementation or no implementation of SSB Tax respectively. In our model we will try to see the effect of decision after 10 years. To implement the tax government will need to bear the administration cost, production cost and public information cost in the first year. Then for each successive year, it will need maintenance cost to keep the tax on going. So, the administration, production, public information and maintenance costs will be the total implementation cost for the government to implement the tax.  On the other hand, after implementation of the tax, government will generate revenue which will account as benefit to government. Also, we supposed that tax intervention will reduced in the amount of consumption of such products leading to low sugar consumption in individual. This will ultimately reduced the some serious health cases like diabetes, obesity and cancer so, it will help to reduce the health care cost of the government. This will also be benefit to the government. At the end, the total NPV will be calculated based on these costs and benefits which will help us to decide weather to implement or not implement sugar tax. 
+<center>
+```{r, echo=FALSE}
 model_last
 ```
-
+</center>
 ## Calculation
+```{r}
+# insert code here 
+```
+
 
 ## Plots
+<center>
+```{r}
+# insert plots here 
+```
+</center>
+
+## what else? 
+* github link to the repository 
 
