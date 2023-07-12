@@ -46,7 +46,7 @@ taxmap              <- knitr::include_graphics('files/taxmap.png')
 Source: *https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html*
 
 <center>
-```{r, echo=FALSE}
+```{r echo=FALSE}
 library(tmap)
 data("World")
 library(readxl)
