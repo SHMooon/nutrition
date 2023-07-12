@@ -69,7 +69,9 @@ decision_function <- function(x, varnames){
       cost_implementation_govern <- 0
     }
     
-    # calculating the maintenance costs, initializing the array with 0 costs for the first year:
+    # calculating the maintenance costs, 
+            #initializing the array with 0 costs for the first year:
+    
     maintenance_cost <- rep(0, n_years)
     
     if (implementation_SSB_Tax){
@@ -85,7 +87,7 @@ decision_function <- function(x, varnames){
     }
     
     
-    # health care cost after SSB Tax  ####
+    # health care cost with intervention of SSB Tax  ####
     
     implementation_SSB_Tax_Di <- 
       as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_DI
@@ -93,7 +95,6 @@ decision_function <- function(x, varnames){
       as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_OB
     implementation_SSB_Tax_Ca <- 
       as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_CA
-    
     
     total_healthcare_cost_with_SSB_Tax <-
       implementation_SSB_Tax_Di + implementation_SSB_Tax_OB + implementation_SSB_Tax_Ca
@@ -117,21 +118,17 @@ decision_function <- function(x, varnames){
       imple_tax_revenue <- implementation_SSB_Tax_tax_revenue
     } else imple_tax_revenue <- 0
     
-    
     ## Total cost with SSB tax##
     if (decision_implementation_SSB_Tax){
       
       net_health_care_cost_with_imple <-  
         total_healthcare_cost_with_SSB_Tax + intervention_cost - implementation_SSB_Tax_tax_revenue
       
-      
       result_imple <- net_health_care_cost_with_imple
     }
     
     if (!decision_implementation_SSB_Tax){
-      net_health_care_cost <- total_health_care_cost_no_SSB_Tax 
-      
-      result_no_imple <- net_health_care_cost
+      result_no_imple <- total_health_care_cost_no_SSB_Tax 
     }
     
   }#close implementation
@@ -145,12 +142,11 @@ decision_function <- function(x, varnames){
     discount(result_no_imple, discount_rate, calculate_NPV = T)
   
   
-  
   return(list(Imple_NPV =  - NPV_imple, #invert because this is the spending
               NO_Imple_NPV = - NPV_no_imple, #invert because this is the spending
               NPV_decision_SSB_Tax =  NPV_no_imple - NPV_imple, #how much they will save
               Cashflow_decision_SSB_Tax =  result_no_imple - result_imple)) #how much they will save
-}
+    }
 
 
 
@@ -164,8 +160,8 @@ mcSimulation_results1 <- mcSimulation(estimate =
                                         estimate_read_csv("Presentation/input_table_updated_3.csv"),
                                       model_function = decision_function,
                                       numberOfModelRuns = 1000,
-                                      functionSyntax = "plainNames"
-)
+                                     functionSyntax = "plainNames"
+                                     )
 
 ###Plot Net Present Value (NPV) distributions###
 
