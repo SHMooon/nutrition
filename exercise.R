@@ -11,14 +11,16 @@ make_variables(estimate_read_csv("Presentation/input_table_updated_3.csv"))
 
 example_decision_function <- function(x, varnames){
   
-  # total health care cost 
-  cost_diabetes <-vv(total_diabetes_case, var_CV, n_years)*
+  # total health care cost per year for Germany 
+  # related to sugar consumption:
+  # type 2 diabetes, cancer and obesity 
+  cost_diabetes <-vv(total_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)*
     vv(cost_diabetes_euro, var_CV, n_years)
   
-  cost_obesities <- vv(total_obesity_case, var_CV, n_years)*
+  cost_obesities <- vv(total_obesity_case*proportion_cases_from_sugar, var_CV, n_years)*
     vv(cost_obesity_euro, var_CV, n_years)
   
-  cost_cancer <- vv(total_cancer_case, var_CV, n_years)*
+  cost_cancer <- vv(total_cancer_case*proportion_cases_from_sugar, var_CV, n_years)*
     vv(cost_cancer_euro, var_CV, n_years)
   
   total_health_care_cost <- cost_diabetes + cost_obesities + cost_cancer
@@ -27,18 +29,18 @@ example_decision_function <- function(x, varnames){
   # pre-calculate common random draws for all intervention model runs ####
   #health care cost after implementation of tax and Tax revenue 
   
-  precalc_HC_with_interv_Tax_DI <- (vv(total_diabetes_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_DI <- (vv(total_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)*
                                   vv(cost_diabetes_euro, var_CV, n_years)) - 
-    (vv(red_diabetes_case, var_CV, n_years)* vv(cost_diabetes_euro, var_CV, n_years))
+    (vv(red_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)* vv(cost_diabetes_euro, var_CV, n_years))
   
   
-  precalc_HC_with_interv_Tax_OB <-  (vv(total_obesity_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_OB <-  (vv(total_obesity_case*proportion_cases_from_sugar, var_CV, n_years)*
                                    vv(cost_obesity_euro, var_CV, n_years))-
-    (vv(red_obesity_case, var_CV, n_years)*vv(cost_obesity_euro, var_CV, n_years))
+    (vv(red_obesity_case*proportion_cases_from_sugar, var_CV, n_years)*vv(cost_obesity_euro, var_CV, n_years))
   
-  precalc_HC_with_interv_Tax_CA <- (vv(total_cancer_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_CA <- (vv(total_cancer_case*proportion_cases_from_sugar, var_CV, n_years)*
                                   vv(cost_cancer_euro, var_CV, n_years))- 
-    (vv(red_cancer_case, var_CV, n_years)*vv(cost_cancer_euro, var_CV, n_years))
+    (vv(red_cancer_case*proportion_cases_from_sugar, var_CV, n_years)*vv(cost_cancer_euro, var_CV, n_years))
   
   
   precalc_tax_revenue <- vv(revenue_tax_euro, var_CV, n_years)
@@ -128,7 +130,7 @@ example_decision_function <- function(x, varnames){
     if (decision_implementation_SSB_Tax){
       
       net_health_care_cost_with_imple <-  
-        total_healthcare_cost_with_SSB_Tax  - intervention_cost + implementation_SSB_Tax_tax_revenue
+        total_healthcare_cost_with_SSB_Tax + intervention_cost - implementation_SSB_Tax_tax_revenue
       #-(Healthcare cost with intervention -intervention implementation cost + tax_difference due to internvention)
       
       result_imple <- net_health_care_cost_with_imple
@@ -153,10 +155,10 @@ example_decision_function <- function(x, varnames){
   # Beware, if you do not name your outputs (left-hand side of the equal sign) in the return section, 
   # the variables will be called output_1, _2, etc.
   
-  return(list(Imple_NPV =  - NPV_imple,
-              NO_Imple_NPV = - NPV_n_imple,
-              NPV_decision_do =  NPV_n_imple- NPV_imple,
-              Cashflow_decision_do =  result_no_imple - result_imple))
+  return(list(Imple_NPV =  - NPV_imple, #invert because this is the spending
+              NO_Imple_NPV = - NPV_n_imple, #invert because this is the spending
+              NPV_decision_do =  NPV_n_imple - NPV_imple, #how much they will save
+              Cashflow_decision_do =  result_no_imple - result_imple)) #how much they will save
 }
 
 
@@ -171,7 +173,7 @@ names(input_table)
 mcSimulation_results1 <- mcSimulation(estimate = 
                                         estimate_read_csv("Presentation/input_table_updated_3.csv"),
                                       model_function = example_decision_function,
-                                      numberOfModelRuns = 200,
+                                      numberOfModelRuns = 2000,
                                       functionSyntax = "plainNames"
 )
 
@@ -193,7 +195,7 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 
 decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1, 
                                     vars = "NPV_decision_do",
-                                    method = 'boxplot_density',
+                                    method = "smooth_simple_overlay",
                                     old_names = "NPV_decision_do",
                                     new_names = "Outcome distribution for savings")
 
