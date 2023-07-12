@@ -227,9 +227,7 @@ decision_function <- function(x, varnames){
     }
     
     if (!decision_implementation_SSB_Tax){
-      net_health_care_cost <- total_health_care_cost_no_SSB_Tax 
-      
-      result_no_imple <- net_health_care_cost
+      result_no_imple <- total_health_care_cost_no_SSB_Tax 
     }
     
   }#close implementation
