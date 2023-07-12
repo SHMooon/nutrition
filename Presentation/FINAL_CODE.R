@@ -10,10 +10,8 @@ make_variables(estimate_read_csv("Presentation/input_table_updated_3.csv"))
 
 
 decision_function <- function(x, varnames){
-  
-  # total health care cost per year for Germany 
-  # related to sugar consumption: type 2 diabetes, cancer and obesity 
-  # proportion_cases_from_sugar is assumption of relation between sugar consumption and sickness 
+  # total health care cost related to sugar consumption: type 2 diabetes, cancer and obesity 
+  # proportion_cases_from_sugar is assumption of relation between sugar consumption and disease 
   
   cost_diabetes <-vv(total_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)*
     vv(cost_diabetes_euro, var_CV, n_years)
@@ -26,14 +24,12 @@ decision_function <- function(x, varnames){
   
   total_health_care_cost <- cost_diabetes + cost_obesities + cost_cancer
   
-  
   # pre-calculate common random draws for all intervention model runs ####
   #health care cost after implementation of tax and Tax revenue 
   
   precalc_HC_with_interv_Tax_DI <- (vv(total_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)*
                                       vv(cost_diabetes_euro, var_CV, n_years)) - 
     (vv(red_diabetes_case*proportion_cases_from_sugar, var_CV, n_years)* vv(cost_diabetes_euro, var_CV, n_years))
-  
   
   precalc_HC_with_interv_Tax_OB <-  (vv(total_obesity_case*proportion_cases_from_sugar, var_CV, n_years)*
                                        vv(cost_obesity_euro, var_CV, n_years))-
@@ -88,8 +84,8 @@ decision_function <- function(x, varnames){
         cost_implementation_govern 
     }
     
-    # health care cost after SSB Tax  ####
     
+    # health care cost after SSB Tax  ####
     
     implementation_SSB_Tax_Di <- 
       as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_DI
@@ -127,11 +123,10 @@ decision_function <- function(x, varnames){
       
       net_health_care_cost_with_imple <-  
         total_healthcare_cost_with_SSB_Tax + intervention_cost - implementation_SSB_Tax_tax_revenue
-      #-(Healthcare cost with intervention -intervention implementation cost + tax_difference due to internvention)
+      
       
       result_imple <- net_health_care_cost_with_imple
     }
-    
     
     if (!decision_implementation_SSB_Tax){
       net_health_care_cost <- total_health_care_cost_no_SSB_Tax 
@@ -141,6 +136,8 @@ decision_function <- function(x, varnames){
     
   }#close implementation
   
+  #discount rate 
+  
   NPV_imple <-
     discount(result_imple, discount_rate, calculate_NPV = T)
   
@@ -148,8 +145,6 @@ decision_function <- function(x, varnames){
     discount(result_no_imple, discount_rate, calculate_NPV = T)
   
   
-  # Beware, if you do not name your outputs (left-hand side of the equal sign) in the return section, 
-  # the variables will be called output_1, _2, etc.
   
   return(list(Imple_NPV =  - NPV_imple, #invert because this is the spending
               NO_Imple_NPV = - NPV_no_imple, #invert because this is the spending
@@ -168,12 +163,11 @@ names(input_table)
 mcSimulation_results1 <- mcSimulation(estimate = 
                                         estimate_read_csv("Presentation/input_table_updated_3.csv"),
                                       model_function = decision_function,
-                                      numberOfModelRuns = 2000,
+                                      numberOfModelRuns = 1000,
                                       functionSyntax = "plainNames"
 )
 
 ###Plot Net Present Value (NPV) distributions###
-
 
 plot_distributions(mcSimulation_object = mcSimulation_results1, 
                    vars = c("Imple_NPV",
