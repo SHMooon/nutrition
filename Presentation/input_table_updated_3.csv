@@ -1,7 +1,7 @@
 description,label,variable,distribution,lower,median,upper,unit
-Establishment costs,Government implementation [€],intervention_costs_admin,posnorm,1371265500.00,,1782645150.00,Euro
-,Industry compliance [€],intervention_costs_prod,posnorm,1353124040.00,,1791975080.00,Euro
-,Costs for accompanying campaigns/public information [€],intervention_costs_info,posnorm,1000000.00,,5000000.00,Euro
+Establishment costs,Government implementation [€],implementation_costs_admin,posnorm,1371265500.00,,1782645150.00,Euro
+,Costs for accompanying campaigns/public information [€],implementation_costs_info,posnorm,1000000,,5000000,Euro
+Maintenance,Maintenance cost [€],maintenance_intervention_SSB_Tax,posnorm,27000000,,36000000,Euro
 Reduced incidences of,Reduced diabetes type 2 [Case],red_diabetes_case,posnorm,155400.00,,218100.00,Case
 ,Reduced obesity [Case],red_obesity_case,posnorm,1604000.00,,2857700.00,Case
 ,Reduced cancer [Case],red_cancer_case,posnorm,16040.00,,28577.00,Case
@@ -15,4 +15,3 @@ Tax income for the government,Tax revenue [€],revenue_tax_euro,const,19200000.
 Discount rate (%),Discount rate (%),discount_rate,posnorm,1.00,,5.00,%
 Years from the start o the implementation of the intervention to the end.,Project time horizon (years),n_years,const,10,,10,
 "Coefficient of variation, ratio of the standard deviation to the mean (a measure of relative variability).",coeff. Variation,var_CV,posnorm,5,,20,
-,Maintenance cost [€],maintenance_intervention_SSB_Tax,posnorm,27000000,,36000000,Euro

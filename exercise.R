@@ -27,56 +27,56 @@ example_decision_function <- function(x, varnames){
   # pre-calculate common random draws for all intervention model runs ####
   #health care cost after implementation of tax and Tax revenue 
   
-  precalc_HC_with_interv_DI <- (vv(total_diabetes_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_DI <- (vv(total_diabetes_case, var_CV, n_years)*
                                   vv(cost_diabetes_euro, var_CV, n_years)) - 
     (vv(red_diabetes_case, var_CV, n_years)* vv(cost_diabetes_euro, var_CV, n_years))
   
   
-  precalc_HC_with_interv_OB <-  (vv(total_obesity_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_OB <-  (vv(total_obesity_case, var_CV, n_years)*
                                    vv(cost_obesity_euro, var_CV, n_years))-
     (vv(red_obesity_case, var_CV, n_years)*vv(cost_obesity_euro, var_CV, n_years))
   
-  precalc_HC_with_interv_CA <- (vv(total_cancer_case, var_CV, n_years)*
+  precalc_HC_with_interv_Tax_CA <- (vv(total_cancer_case, var_CV, n_years)*
                                   vv(cost_cancer_euro, var_CV, n_years))- 
     (vv(red_cancer_case, var_CV, n_years)*vv(cost_cancer_euro, var_CV, n_years))
+  
   
   precalc_tax_revenue <- vv(revenue_tax_euro, var_CV, n_years)
   
   
-  
-  precalc_HC_with_interv_total <- precalc_HC_with_interv_DI +precalc_HC_with_interv_OB+precalc_HC_with_interv_CA
-  
-  
-  ###Implementation###
+  ###Intervention of implementation SSB Tax ###
   
   for (decision_implementation_SSB_Tax in c(FALSE,TRUE)){
     
     if (decision_implementation_SSB_Tax){
       
-      implementation_SSB <- TRUE
+      implementation_SSB_Tax <- TRUE
       implementation_admin <- TRUE
-      implementation_indu_info <- TRUE
+      no_implementation <- FALSE
+      
     } else
     {
-      implementation_SSB <- FALSE
+      implementation_SSB_Tax <- FALSE
       implementation_admin <- FALSE
-     
+      no_implementation <- TRUE
+      
     }
     
     
     ##cost for intervention##
-    if (implementation_admin) {
-      cost_implementation_admin <-
+    if (implementation_admin){
+      cost_implementation_govern <-
         implementation_costs_admin + implementation_costs_info
-    } else
-      cost_implementation_admin <- 0
+    } else{
+      cost_implementation_govern <- 0
+      }
     
-  
+   
     
     # calculating the maintenance costs, initializing the array with 0 costs for the first year:
     maintenance_cost <- rep(0, n_years)
     
-    if (implementation_SSB)
+    if (implementation_SSB_Tax){
       maintenance_cost <-
       maintenance_cost + vv(maintenance_intervention_SSB_Tax, 
                             var_CV, n_years)
@@ -85,16 +85,42 @@ example_decision_function <- function(x, varnames){
     
     #intervention cost for first year 
     intervention_cost[1] <-
-      cost_implementation_admin 
+      cost_implementation_govern 
+    }
     
     
+    # health care cost after SSB Tax  ####
     
-    # Benefits from  saving in intervention SSB Tax ####
+    
+    implementation_SSB_Tax_Di <- 
+      as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_DI
+    implementation_SSB_Tax_OB <-
+      as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_OB
+    implementation_SSB_Tax_Ca <- 
+      as.numeric(implementation_SSB_Tax) * precalc_HC_with_interv_Tax_CA
+    
+    
+    total_healthcare_cost_with_SSB_Tax <-
+      implementation_SSB_Tax_Di + implementation_SSB_Tax_OB + implementation_SSB_Tax_Ca
+    
+    implementation_SSB_Tax_tax_revenue <- 
+      as.numeric(implementation_SSB_Tax) * precalc_tax_revenue
   
+    #Health care cost without SSB Tax   
+        
+    cost_diabetes_no_SSB_Tax <-  as.numeric(no_implementation)*cost_diabetes
     
+    cost_obesities_no_SSB_Tax <- as.numeric(no_implementation)* cost_obesities
     
-    if(implementation_SSB){
-      imple_tax_revenue <- precalc_tax_revenue
+    cost_cancer_no_SSB_Tax <- as.numeric(no_implementation)*cost_cancer
+    
+      total_health_care_cost_no_SSB_Tax <- 
+        cost_diabetes_no_SSB_Tax + cost_obesities_no_SSB_Tax + cost_cancer_no_SSB_Tax
+        
+        
+    
+    if(implementation_SSB_Tax){
+      imple_tax_revenue <- implementation_SSB_Tax_tax_revenue
     } else imple_tax_revenue <- 0
     
     
@@ -102,7 +128,7 @@ example_decision_function <- function(x, varnames){
     if (decision_implementation_SSB_Tax){
       
       net_health_care_cost_with_imple <-  
-        precalc_HC_with_interv_total  + intervention_cost - imple_tax_revenue
+        total_healthcare_cost_with_SSB_Tax  - intervention_cost + implementation_SSB_Tax_tax_revenue
       #-(Healthcare cost with intervention -intervention implementation cost + tax_difference due to internvention)
       
       result_imple <- net_health_care_cost_with_imple
@@ -110,18 +136,18 @@ example_decision_function <- function(x, varnames){
     
     
     if (!decision_implementation_SSB_Tax){
-      net_health_care_cost <- total_health_care_cost 
+      net_health_care_cost <- total_health_care_cost_no_SSB_Tax 
       
-      result_n_imple <- net_health_care_cost
+      result_no_imple <- net_health_care_cost
     }
     
   }#close implementation
   
   NPV_imple <-
-    discount(result_imple, discount_rate, calculate_NPV = TRUE)
+    discount(result_imple, discount_rate, calculate_NPV = T)
   
   NPV_n_imple <-
-    discount(result_n_imple, discount_rate, calculate_NPV = TRUE)
+    discount(result_no_imple, discount_rate, calculate_NPV = T)
   
   
   # Beware, if you do not name your outputs (left-hand side of the equal sign) in the return section, 
@@ -129,8 +155,8 @@ example_decision_function <- function(x, varnames){
   
   return(list(Imple_NPV =  - NPV_imple,
               NO_Imple_NPV = - NPV_n_imple,
-              NPV_decision_do =  NPV_n_imple - NPV_imple ,
-              Cashflow_decision_do =  result_n_imple - result_imple))
+              NPV_decision_do =  NPV_n_imple- NPV_imple,
+              Cashflow_decision_do =  result_no_imple - result_imple))
 }
 
 
@@ -143,9 +169,9 @@ names(input_table)
 
 ###Model assessment###
 mcSimulation_results1 <- mcSimulation(estimate = 
-                                        estimate_read_csv("Presentation/Input_table_updated_3.csv"),
+                                        estimate_read_csv("Presentation/input_table_updated_3.csv"),
                                       model_function = example_decision_function,
-                                      numberOfModelRuns = 1000,
+                                      numberOfModelRuns = 200,
                                       functionSyntax = "plainNames"
 )
 
@@ -182,7 +208,6 @@ plot_cashflow(mcSimulation_object = mcSimulation_results1,
 
 #here we subset the outputs from the mcSimulation function (y) by selecting the correct variables
 # choose this carefully and be sure to run the multi_EVPI only on the variables that the you want
-
 #EVPI = (EOL : Expected Opportunity Loss)
 
 
@@ -206,10 +231,14 @@ compound_figure(mcSimulation_object = mcSimulation_results1,
 
 ###Projection to Latent Structures (PLS) analysis###
 
-
 pls_result <- plsr.mcSimulation(object = mcSimulation_results1,
                                 resultName = names(mcSimulation_results1$y)[3], ncomp = 1)
 plot_pls(pls_result, input_table = input_table, threshold = 0)
 
 
 
+a <- mean(mcSimulation_table$NPV_decision_do)
+a
+b <- sd(mcSimulation_table$NPV_decision_do)
+c <- b/a
+c
