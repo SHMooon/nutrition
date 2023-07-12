@@ -98,6 +98,7 @@ Our decision model will be based on how much German government can save or lose 
 <center>
 ```{r, echo=FALSE}
 model_last
+#pls change!!
 ```
 </center>
 At the end, the total NPV will be calculated based on these costs and benefits which will help us to decide weather to implement or not implement sugar tax. 
