@@ -6,6 +6,9 @@ output:
   html_document:
     toc: true
     toc_depth: 2
+    
+bibliography: 
+  - project_packages.bib
 
 ---
 <!-- LOADING DATA -->
@@ -14,6 +17,11 @@ model_first_clean   <- knitr::include_graphics('files/model_first_clean.png')
 model_first         <- knitr::include_graphics('files/model_first.png')
 model_last          <- knitr::include_graphics('files/model_last.png')
 taxmap              <- knitr::include_graphics('files/taxmap.png')
+
+
+#packages for decision
+knitr::write_bib(c(.packages(),
+                   'decisionSupport', 'tmap', 'readxl'),'project_packages.bib')
 
 ```
 
@@ -45,6 +53,7 @@ taxmap              <- knitr::include_graphics('files/taxmap.png')
 * Instead, Germany has a national strategy (NRI, 2019-25) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns  
 Source: *https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html*
 
+
 <center>
 ```{r echo=FALSE}
 library(tmap)
@@ -63,7 +72,12 @@ tm_shape(World)+
             main.title.color = "lightblue")+
   tm_text(text = "iso_a3", size = 0.2)
 ```
+
 </center>
+for data we used [@R-tmap] to visualize
+
+
+## Decision 
 
 **Decision:** Introducing a tax on SSBs in Germany
 
