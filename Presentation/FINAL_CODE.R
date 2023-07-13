@@ -133,7 +133,7 @@ decision_function <- function(x, varnames){
     
   }#close implementation
   
-  #discount rate 
+  #NPV calculate
   
   NPV_imple <-
     discount(result_imple, discount_rate, calculate_NPV = T)
