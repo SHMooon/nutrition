@@ -91,9 +91,7 @@ for data we used [@R-tmap] to visualize
 * lower consumption of SSBs leads to lower consumption of sugar
   + people might substitute with other sugar-rich products
 
-
-## Modeling 
-### Model with a broad approach
+## Model: Broad approach
 In our overall decision model, we are interested to look at the effect of implementation of Tax in SSB products. We assumed that this decision to implement the tax in SSB products will have effect in different economic, ecologic, social and health factors.  From economic point of view, implementation of SSB tax might decrease the interest of farmers in sugar beet cultivation and which may ultimately leads to decreased sugar beets production.  But from ecological perspectives reduced in sugar beet cultivation area might provide opportunity to increase the areas for sustainable cultivations. Also, cultivation of sugar beets for longer period was found to be deleterious to soil health so, decreased in sugar beets area might help to regain soil health. Whereas in social aspect, SSB tax can be a demonstration for people to reduce sugar consumption. But it might be questionable about the access of such products among rich and poor people. 
 
 <center>
@@ -106,7 +104,7 @@ In our model we assumed that, SSB tax might have greater effects in term of heal
 
 
 
-### Model for Decision Analysis
+## Model: Health Care Cost
 Our decision model will be based on how much German government can save or lose after implementation or no implementation of SSB Tax respectively. In our model we will try to see the effect of decision after 10 years. To implement the tax government will need to bear the administration cost, production cost and public information cost in the first year. Then for each successive year, it will need maintenance cost to keep the tax on going. So, the administration, production, public information and maintenance costs will be the total implementation cost for the government to implement the tax.  On the other hand, after implementation of the tax, government will generate revenue which will account as benefit to government. Also, we supposed that tax intervention will reduced in the amount of consumption of such products leading to low sugar consumption in individual. This will ultimately reduced the some serious health cases like diabetes, obesity and cancer so, it will help to reduce the health care cost of the government. This will also be benefit to the government. 
 
 <center>
@@ -285,7 +283,7 @@ mcSimulation_results1 <- mcSimulation(estimate =
 
 
 
-## Plots for Net present Value (NPV) distributions
+## Plots: Net present Value
 <center>
 ```{r}
 
@@ -312,7 +310,6 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 ```
 </center>
 
-
 ## Cashflow analysis###
 <center>
 ```{r}
@@ -324,7 +321,7 @@ plot_cashflow(mcSimulation_object = mcSimulation_results1,
 </center>
 
 
-## Value of Information (VoI) analysis
+## Value of Information
 <center>
 ```{r}
 #here we subset the outputs from the mcSimulation function (y) by selecting the correct variables
@@ -359,7 +356,7 @@ compound_figure(mcSimulation_object = mcSimulation_results1,
 ```
 </center>
 
-## Projection to Latent Structures (PLS) analysis
+## Projection to Latent Structures
 <center>
 ```{r}
 
