@@ -9,6 +9,7 @@ output:
     
 bibliography: 
   - project_packages.bib
+  - sources.bib
 
 ---
 <!-- LOADING DATA -->
@@ -17,7 +18,7 @@ model_first_clean   <- knitr::include_graphics('files/model_first_clean.png')
 model_first         <- knitr::include_graphics('files/model_first.png')
 model_last          <- knitr::include_graphics('files/model_last.png')
 taxmap              <- knitr::include_graphics('files/taxmap.png')
-
+input_table         <-  knitr::include_graphics('files/Input_table.png')
 
 #packages for decision
 knitr::write_bib(c(.packages(),
@@ -33,6 +34,7 @@ knitr::write_bib(c(.packages(),
 * soft drinks, energy drinks, fruit nectar drinks etc.
 * one of the main sources of added sugar intake in Germany
 * many associated health issues, that lead to decrease life quality of individual people and are also a burden on the public health system
+[@WHO2022 & @Backholer2022]
 
 ### And why should they be taxed?
 * to internalize the external costs of high sugar consumption for the society
@@ -41,17 +43,19 @@ knitr::write_bib(c(.packages(),
   + a 20% tax on SSBs has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
   + SSB taxes can significantly reduce the incidence of type-2 diabetes, heart disease, stroke, and premature mortality
   + SSB taxes have resulted in substantial increases in government revenue
-  + no evidence of negative impact on employment was found (UNICEF (2022))
+  + no evidence of negative impact on employment was found @Backholer2022
 * tax returns can be reinvested in health sector, further promoting health and well-being of the population
 * alternative interventions to reduce sugar consumption on the individual and producer/retailer level often show effects slower and are more costly; they are still useful to accompany a tax introduction 
-* recommended by WHO and UNICEF because
+* recommended by WHO and UNICEF [@WHO2022 & @Backholer2022]
+
+
 
 ### Why did we choose Germany?
 * Germany doesn’t have this kind of tax at the moment
-* officially because “there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity”  
-*Source: https://www.bundestag.de/webarchiv/presse/hib/2020_12/810910-810910*
-* Instead, Germany has a national strategy (NRI, 2019-25) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns  
-Source: *https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html*
+* officially because “there is not enough scientifical evidence yet that a tax on SBBs will decrease sugar or total energy intake of the population in the long term and/or decrease obesity”  [@DeutscherBundestag2020]
+
+* Instead, Germany has a national strategy ([NRI, 2019-25](https://www.bmel.de/SharedDocs/FAQs/DE/faq-reduktionsstrategieZuckerSalzFette/FAQ-reduktionsstrategieZuckerSalzFette_List.html)) including the reduction of sugar contents of heavily processed food/drinks and awareness raising campaigns  
+
 
 
 <center>
@@ -91,8 +95,12 @@ for data we used [@R-tmap] to visualize
 * lower consumption of SSBs leads to lower consumption of sugar
   + people might substitute with other sugar-rich products
 
+
+
 ## Model: Broad approach
-In our overall decision model, we are interested to look at the effect of implementation of Tax in SSB products. We assumed that this decision to implement the tax in SSB products will have effect in different economic, ecologic, social and health factors.  From economic point of view, implementation of SSB tax might decrease the interest of farmers in sugar beet cultivation and which may ultimately leads to decreased sugar beets production.  But from ecological perspectives reduced in sugar beet cultivation area might provide opportunity to increase the areas for sustainable cultivations. Also, cultivation of sugar beets for longer period was found to be deleterious to soil health so, decreased in sugar beets area might help to regain soil health. Whereas in social aspect, SSB tax can be a demonstration for people to reduce sugar consumption. But it might be questionable about the access of such products among rich and poor people. 
+In our overall decision model, we are interested to look at the effect of implementation of Tax in SSB products. We assumed that this decision to implement the tax in SSB products will have effect in different economic, ecologic, social and health factors.  From economic point of view, implementation of SSB tax might decrease the interest of farmers in sugar beet cultivation and which may ultimately leads to decreased sugar beets production.  But from ecological perspectives reduced in sugar beet cultivation area might provide opportunity to increase the areas for sustainable cultivation. Also, cultivation of sugar beets for longer period was found to be deleterious to soil health so, decreased in sugar beets area might help to regain soil health. Whereas in social aspect, SSB tax can be a demonstration for people to reduce sugar consumption. But it might be questionable about the access of such products among rich and poor people. 
+
+
 
 <center>
 ```{r, echo=FALSE}
@@ -110,10 +118,20 @@ Our decision model will be based on how much German government can save or lose 
 <center>
 ```{r, echo=FALSE}
 model_last
-#pls change!!
+
 ```
 </center>
 At the end, the total NPV will be calculated based on these costs and benefits which will help us to decide weather to implement or not implement sugar tax. 
+
+
+## Input table
+```{r}
+
+input_table
+
+```
+
+[@Du2021, @Sanchez-Romero2016, @Lal2017]
 
 ## Calculation
 ```{r}
@@ -244,7 +262,7 @@ decision_function <- function(x, varnames){
     
   }#close implementation
   
-  #discount rate 
+  #calculate NPV 
   
   NPV_imple <-
     discount(result_imple, discount_rate, calculate_NPV = T)
@@ -371,8 +389,9 @@ plot_pls(pls_result, input_table = input_table, threshold = 0)
 </center>
 
 
-## Sources
-<!--Insert sources here --> 
 
 To see all the data we used, please visit our [GitHub-Repository](https://github.com/SHMooon/nutrition)
 
+
+
+## Sources
