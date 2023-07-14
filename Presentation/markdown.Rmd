@@ -138,7 +138,7 @@ input_table
 
 ```
 
-[@Du2021, @Sanchez-Romero2016, @Lal2017]
+Based on [@Du2021], [@Sanchez-Romero2016] and  [@Lal2017]
 
 ## Calculation
 ```{r}
