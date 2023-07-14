@@ -1,5 +1,5 @@
 ---
-title: "Implementation of a sugar tax for SSB"
+title: "Implementation of a sugar tax for SSBs "
 author: "Karin Altvater, Santosh Bhandari, Patrick Frey, Sanghyo Moon"
 date: "`r Sys.Date()`"
 output: 
@@ -8,8 +8,8 @@ output:
     toc_depth: 2
     
 bibliography: 
-  - project_packages.bib
-  - sources.bib
+  - bib/project_packages.bib
+  - bib/sources.bib
 
 ---
 <!-- LOADING DATA -->
@@ -22,7 +22,7 @@ input_table         <-  knitr::include_graphics('files/Input_table.png')
 
 #packages for decision
 knitr::write_bib(c(.packages(),
-                   'decisionSupport', 'tmap', 'readxl'),'project_packages.bib')
+                   'decisionSupport', 'tmap', 'readxl'),'bib/project_packages.bib')
 
 ```
 
@@ -33,20 +33,19 @@ knitr::write_bib(c(.packages(),
 ### What are Sugar-Sweetened Beverages (SSBs)?
 * soft drinks, energy drinks, fruit nectar drinks etc.
 * one of the main sources of added sugar intake in Germany
-* many associated health issues, that lead to decrease life quality of individual people and are also a burden on the public health system
-[@WHO2022 & @Backholer2022]
+* many associated health issues, that lead to a decrease in life quality of individual people and are also a burden on the public health system ([@WHO2022 & @Backholer2022])
 
 ### And why should they be taxed?
 * to internalize the external costs of high sugar consumption for the society
 * higher prices of SSBs lead to lower consumption: proven for several countries
-  + a 10% tax levied against SSBs has been shown to lead to an 8-10% reduction in purchase and consumption
-  + a 20% tax on SSBs has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
-  + SSB taxes can significantly reduce the incidence of type-2 diabetes, heart disease, stroke, and premature mortality
+  + a 10% tax has been shown to lead to an 8-10% reduction in purchase and consumption of SSBs
+  + a 20% tax has been demonstrated to reduce the prevalence of overweight by 1-3% and the prevalence of obesity by 1-4%
+  + SSB taxes can significantly reduce the incidence of other health issues like diabetes type 2
   + SSB taxes have resulted in substantial increases in government revenue
-  + no evidence of negative impact on employment was found @Backholer2022
+  + no evidence of negative impact on employment was found (@Backholer2022)
 * tax returns can be reinvested in health sector, further promoting health and well-being of the population
 * alternative interventions to reduce sugar consumption on the individual and producer/retailer level often show effects slower and are more costly; they are still useful to accompany a tax introduction 
-* recommended by WHO and UNICEF [@WHO2022 & @Backholer2022]
+* WHO and UNICEF recommend the introduction of a SSB tax ([@WHO2022 & @Backholer2022])
 
 
 
@@ -78,8 +77,9 @@ tm_shape(World)+
 ```
 
 </center>
-The data is according to FAOSTAT 2023
-For this data we used [@R-tmap] to visualize
+The data is according to FAOSTAT 2023.
+
+For visualization, we used the package 'tmap' [@R-tmap].
 
 
 ## Decision 
@@ -99,7 +99,10 @@ For this data we used [@R-tmap] to visualize
 
 
 ## Model: Broad approach
-In our overall decision model, we are interested to look at the effect of implementation of Tax in SSB products. We assumed that this decision to implement the tax in SSB products will have effect in different economic, ecologic, social and health factors.  From economic point of view, implementation of SSB tax might decrease the interest of farmers in sugar beet cultivation and which may ultimately leads to decreased sugar beets production.  But from ecological perspectives reduced in sugar beet cultivation area might provide opportunity to increase the areas for sustainable cultivation. Also, cultivation of sugar beets for longer period was found to be deleterious to soil health so, decreased in sugar beets area might help to regain soil health. Whereas in social aspect, SSB tax can be a demonstration for people to reduce sugar consumption. But it might be questionable about the access of such products among rich and poor people. 
+In our overall decision model, we are looking at all the possible effects that come from implementing a tax on SSBs. These include economic, ecologic, social and health factors.
+From an economic point of view, the implementation of an SSB tax might decrease earnings of stakeholders along the value chain of SSB production and sale. This starts with sugar beet cultivators, who might have to abandon sugar beet production or at least reduce it.
+From an ecological perspective, reduced sugar beet cultivation might free space for more sustainable cultivation of other crops or biodiversity conservation measures. It might increase soil health, as the cultivation of sugar beets, especially over a long period of time, was found to be deleterious to the soil. 
+Finally, considering the social aspect, an SSB tax could lead to demonstrations by people who feel patronized by it. There is also the question if an artificial price rise is ethically justifyable or if this is a discrimination of poorer households.
 
 
 
@@ -109,12 +112,15 @@ model_first_clean
 ```
 </center>
 
-In our model we assumed that, SSB tax might have greater effects in term of health as tax might reduced the consumption of sugar and leading to decrease sugar related health diseases like diabetes and obesity. And also for our model we will focus only on the health sector as it is one of the important aspect and we may not be able to look all the aspect due to limitation of finding data in defined timeframe of our study. 
+To decrease complexity and develop a comprehensive decision model, we focus on the effects that an SSB tax might have on health outcomes. We assume that higher prices of SSBs lead to lower consumption and therefore reduced sugar intake, leading to fewer cases of sugar consumption related health issues like diabetes, obesity and cancer.  
 
 
 
 ## Model: Health Care Cost
-Our decision model will be based on how much German government can save or lose after implementation or no implementation of SSB Tax respectively. In our model we will try to see the effect of decision after 10 years. To implement the tax government will need to bear the administration cost, production cost and public information cost in the first year. Then for each successive year, it will need maintenance cost to keep the tax on going. So, the administration, production, public information and maintenance costs will be the total implementation cost for the government to implement the tax.  On the other hand, after implementation of the tax, government will generate revenue which will account as benefit to government. Also, we supposed that tax intervention will reduced in the amount of consumption of such products leading to low sugar consumption in individual. This will ultimately reduced the some serious health cases like diabetes, obesity and cancer so, it will help to reduce the health care cost of the government. This will also be benefit to the government. 
+The german government will make the decision of introducing a SSB tax if this will save them expenses. For our model, we are simulating the effects of a tax over a 10 year period.
+Costs of a tax for the government encompass administration costs and costs for public information and awareness raising campaigns for the first year. For each consecutive year, there will be maintenance costs.
+Savings in expenses for the government will come from reduced incidences of diabetes, obesity and cancer and the related saved spendings on treatments.
+Furthermore, there will be tax revenues.  
 
 <center>
 ```{r, echo=FALSE}
@@ -122,7 +128,7 @@ model_last
 
 ```
 </center>
-At the end, the total NPV will be calculated based on these costs and benefits which will help us to decide weather to implement or not implement sugar tax. 
+At the end, the total NPV will be calculated based on these costs and benefits which will help us to decide whether to implement a SSB tax or not. 
 
 
 ## Input table
@@ -304,7 +310,7 @@ mcSimulation_results1 <- mcSimulation(estimate =
 
 ## Plots: Net present Value
 
-The graphs shows us an overlay of the full results of the Monte Carlo model of the decision options implementing a tax or not, means the expected net present value and the comparison shows what the goverment will spent for each option. We cannot see significant differences because the distribution is very broad spreaded due a lot of uncertainty. 
+The graphs show the results of a Monte Carlo simulation based on our model and input data, where the expected net present value and the comparison show what the government would spend in each scenario. We cannot see significant differences here, as the distribution is very widely spread, indicating high uncertainties in our model.
 
 <center>
 ```{r}
@@ -323,8 +329,8 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 ```
 </center>
 
-If we zoom in and plot just the changes of how many money the goverment will safe on health care cost due implementing the tax, we see that in more cases they will safe money.
-But here is still a very wide distribution due uncertainty.
+If we zoom in and plot just the changes of how much money the government will safe on health care costs due to the tax, we see that they will safe money more often than they would not.
+Still, we have a wide distribution due to uncertainty.
 
 <center>
 ```{r}
@@ -341,7 +347,7 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 ## Cashflow analysis###
 
 Here we plot the distribution of annual cashflow over a simulated 10-year period for the option of implementing the tax.
-In the first about two years the government will not have reductions in health care cost, because of the costs for implementing the sugar tax. After two years the Government will save money for health care constantly.
+In the first two years roughly, the government will not have reductions in health care costs, because of the costs for implementing the SSB tax. But after two years, the government will start to save money on health care constantly.
 
 <center>
 ```{r}
@@ -355,7 +361,9 @@ plot_cashflow(mcSimulation_object = mcSimulation_results1,
 
 ## Value of Information
 
-Value of Information Analysis: to see if collecting more information on a certain input variable would provide more certainty about the decision option. The expected value of perfect information (EVPI) shows how much money needs to investigate to eliminate uncertainty at input variables. If we assume that 1 to 10 percent (what we have seen in the input table) of the disease cases per year are due to sugar consumption, 200 million euro are needed to get certain information about that.
+The value of information analysis shows us if collecting more information on a certain input variable would provide more and how much certainty about the decision options. 
+The expected value of perfect information (EVPI) shows how much money the decision maker would be willing to spend to get more information on one variable.
+If we assume that 1-10% (see input table) of the disease cases per year are related to reduced sugar consumption, the government would be willing to pay around 200 Million Euro to get more  information about that.
 
 <center>
 ```{r}
@@ -376,9 +384,9 @@ plot_evpi(evpi, decision_vars = "NPV_decision_SSB_Tax")
 
 ## Plot of NPV, Cashflow and VoI
 
-In the graph on the bottom left we determine the Variable Importance in the Projection (VIP) for the variables
-The bar at 1 represents the threshold between important and unimportant variables for the model output.
-And here we also see the importance of the proportion of disease cases per year due sugar.
+In the graph on the bottom left we determine the Variable Importance in the Projection (VIP) for our model variables.
+At the X-axis value = 1, we see the threshold between important and unimportant variables for the model output.
+We also see the importance of the proportion of disease cases per year related to sugar.
 
 
 <center>
@@ -409,6 +417,15 @@ plot_pls(pls_result, input_table = input_table, threshold = 0)
 
 ```
 </center>
+
+
+## Conclusion
+
+- We did not choose an easy decision
+- Many underlying assumptions that are difficult to prove (causal effects)
+- Complex calculations that need a lot of input data
+- High uncertainties
+- Much more research needed
 
 
 
