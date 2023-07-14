@@ -303,6 +303,9 @@ mcSimulation_results1 <- mcSimulation(estimate =
 
 
 ## Plots: Net present Value
+
+The graphs shows us an overlay of the full results of the Monte Carlo model of the decision options implementing a tax or not, means the expected net present value and the comparison shows what the goverment will spent for each option. We cannot see significant differences because the distribution is very broad spreaded due a lot of uncertainty. 
+
 <center>
 ```{r}
 
@@ -317,8 +320,14 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
                                     vars = c("Imple_NPV",
                                              "NO_Imple_NPV"),
                                     method = 'boxplot')
+```
+</center>
 
+If we zoom in and plot just the changes of how many money the goverment will safe on health care cost due implementing the tax, we see that in more cases they will safe money.
+But here is still a very wide distribution due uncertainty.
 
+<center>
+```{r}
 decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1, 
                                     vars = "NPV_decision_SSB_Tax",
                                     method = "smooth_simple_overlay",
@@ -330,6 +339,10 @@ decisionSupport::plot_distributions(mcSimulation_object = mcSimulation_results1,
 </center>
 
 ## Cashflow analysis###
+
+Here we plot the distribution of annual cashflow over a simulated 10-year period for the option of implementing the tax.
+In the first about two years the government will not have reductions in health care cost, because of the costs for implementing the sugar tax. After two years the Government will save money for health care constantly.
+
 <center>
 ```{r}
 
@@ -341,6 +354,9 @@ plot_cashflow(mcSimulation_object = mcSimulation_results1,
 
 
 ## Value of Information
+
+Value of Information Analysis: to see if collecting more information on a certain input variable would provide more certainty about the decision option. The expected value of perfect information (EVPI) shows how much money needs to investigate to eliminate uncertainty at input variables. If we assume that 1 to 10 percent (what we have seen in the input table) of the disease cases per year are due to sugar consumption, 200 million euro are needed to get certain information about that.
+
 <center>
 ```{r}
 #here we subset the outputs from the mcSimulation function (y) by selecting the correct variables
@@ -359,6 +375,11 @@ plot_evpi(evpi, decision_vars = "NPV_decision_SSB_Tax")
 
 
 ## Plot of NPV, Cashflow and VoI
+
+In the graph on the bottom left we determine the Variable Importance in the Projection (VIP) for the variables
+The bar at 1 represents the threshold between important and unimportant variables for the model output.
+And here we also see the importance of the proportion of disease cases per year due sugar.
+
 
 <center>
 ```{r}
