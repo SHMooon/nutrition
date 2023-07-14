@@ -78,7 +78,8 @@ tm_shape(World)+
 ```
 
 </center>
-for data we used [@R-tmap] to visualize
+The data is according to FAOSTAT 2023
+For this data we used [@R-tmap] to visualize
 
 
 ## Decision 
